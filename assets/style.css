@@ -1,0 +1,180 @@
+@font-face {
+    font-family: "OpenSans";
+    src: url("./OpenSans/OpenSans-Regular.ttf");
+}
+@font-face {
+    font-family: "OpenSansBold";
+    src: url("./OpenSans/OpenSans-Bold.ttf");
+}
+
+a:link {color: rgb(20, 20, 20);}
+a:visited {color: rgb(20, 20, 20);}
+a:hover {color: rgb(20, 20, 20);}
+a:active {color: rgb(20, 20, 20);}
+input[type="text"] {font-family: OpenSansBold;background: transparent;border: none;outline: none;}
+input[type="password"] {font-family: OpenSansBold;background: transparent;border: none;outline: none;}
+
+/* index */
+.homeBody {
+    font-family: OpenSansBold;
+    background-image: url(./svg/home.svg);
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    background-size: cover;
+    cursor: default;
+}
+.mainText {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+}
+.br {
+    display: block;
+    margin: 2px 0;
+    z-index: 0;
+}
+.smallbr {
+    display: block;
+    margin: -6px 0;
+    z-index: 0;
+}
+
+/* Constants */
+.logo {
+    position: absolute;
+    z-index: 2;
+}
+.sidebar {
+    position: absolute;
+    z-index: 1;
+}
+.taskboard {
+    position: absolute;
+    z-index: 0;
+}
+.sidebarClickables {
+    color: rgb(20, 20, 20);
+    position: absolute;
+    font-size: 32px;
+    z-index: 2;
+}
+.navbar {
+    color: #141414;
+    position: absolute;
+    Text-align: left;
+    font-size: 32px;
+    z-index: 2;
+}
+
+/* else */
+.elseBody {
+    font-family: OpenSansBold;
+    cursor: default;
+}
+.loginBox {
+    position: absolute;
+    z-index: 0;
+}
+.signupBox {
+    position: absolute;
+    z-index: 0;
+}
+.loginClose {
+    position: absolute;
+    z-index: 1;
+}
+/* login screen */
+.loginText {
+    color: rgb(20, 20, 20);
+    position: absolute;
+    font-size: 32px;
+}
+.loginEntryHolderText {
+    color: rgb(83, 84, 84);
+    position: absolute;
+    font-size: 24px;
+}
+.loginSmall {
+    position: absolute;
+    color: rgb(20, 20, 20);
+    font-size: 26.75px;
+    text-align: center;
+}
+.goText {
+    position: absolute;
+    color: rgb(20, 20, 20);
+    font-size: 48px;
+    text-align: center;
+}
+/* MyDay */
+.taskEntryHolderText {
+    color: rgb(20, 20, 20);
+    position: absolute;
+    font-size: 34px;
+}
+.taskETAText {
+    color: rgb(20, 20, 20);
+    position: absolute;
+    font-size: 48px;
+}
+/* GPA */
+.gpaEntryHolderText {
+    color: rgb(83, 84, 84);
+    position: absolute;
+    font-size: 27px;
+}
+.totalGpaText {
+    color: rgb(20, 20, 20);
+    position: absolute;
+    font-size: 48px;
+}
+.gpaCompareText {
+    color: rgb(20, 20, 20);
+    position: absolute;
+    font-size: 34px;
+}
+/* schedule */
+.scheduleTop {
+    position: absolute;
+    z-index: 1;
+}
+.scheduleMid {
+    position: absolute;
+    z-index: 0;
+}
+.scheduleBot {
+    position: absolute;
+    z-index: -1;
+}
+.scheduleEntryHolderText {
+    color: rgb(83, 84, 84);
+    position: absolute;
+    font-size: 24px;
+    z-index: 1;
+}
+.scheduleTextBig {
+    position: absolute;
+    z-index: 1;
+    font-size: 64px;
+}
+.scheduleTextMid {
+    position: absolute;
+    z-index: 1;
+    font-size: 47px;
+}
+.scheduleTextSmall {
+    position: absolute;
+    z-index: 1;
+    font-size: 29px;
+}
+.scheduleCardNumbersMid {
+    position: absolute;
+    z-index: 1;
+    font-size: 175px;
+}
+.scheduleCardNumbersBot {
+    position: absolute;
+    z-index: 0;
+    font-size: 130px;
+}

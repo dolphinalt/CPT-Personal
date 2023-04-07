@@ -1,0 +1,11 @@
+version: '3'
+services:
+        web:
+                image: seal_backend_v1
+                build: .
+                ports:
+                        - "8133:8086"
+                volumes:
+                        - ./volumes:/volumes
+                        - ./instance:/instance
+                restart: unless-stopped

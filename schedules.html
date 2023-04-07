@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MyToolkit</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="./assets/js/schedules/swap.js"></script>
+    <script>side="class";</script>
+  </head>
+  <body class = "elseBody" onload="resize();">
+    <!-- Navbar at the top -->
+    <img src = "./assets/svg/logo_yellow.svg" id = "navbar0" onclick = "showSidebar();" width = "54.5" height = "54.5" class = "logo" style="top: 32px; left: 17px;">
+    <div class = "navbar" id = "navbar1" onclick = "showSidebar();" style = "top: 37px; left: 89px;">MYTOOLKIT</div>
+    <div class = "navbar" id = "navbar2" style = "top: 37px; left: 1168px;opacity: 0.25;" onclick="window.location = './schedules.html'">SCHEDULE</div>
+    <div class = "navbar" id = "navbar2" style = "top: 37px; left: 944px;opacity: 1;" onclick="window.location = './myschedule.html'">CLASSMATES</div>
+    <div class = "navbar" id = "navbar3" style = "top: 37px; left: 1360px;" onclick="window.location = './login.html';">LOGIN</div>
+    <!-- Navbar at the top -->
+
+    <!-- Main -->
+    <img src="./assets/svg/schedulebox_main.svg" id = "schedule0" width = "507" height = "auto" class = "scheduleTop" style = "top:91px; left:515px;" onClick="swap('left'); side='class';">
+    <img src="./assets/svg/schedulebox_back.svg" id = "schedule1" width = "432" height = "auto" class = "scheduleMid" style = "top:136px; left:901px;" onClick="swap('right'); side='teach';">
+    <div class = "scheduleEntryHolderText" id = "class0" style = "top: 149px; left: 585.5px;opacity:0.25;">Class 1</div>
+    <div class = "scheduleEntryHolderText" id = "class1" style = "top: 270px; left: 585.5px;opacity:0.25;">Class 2</div>
+    <div class = "scheduleEntryHolderText" id = "class2" style = "top: 391px; left: 585.5px;opacity:0.25;">Class 3</div>
+    <div class = "scheduleEntryHolderText" id = "class3" style = "top: 512px; left: 585.5px;opacity:0.25;">Class 4</div>
+    <div class = "scheduleEntryHolderText" id = "class4" style = "top: 633px; left: 585.5px;opacity:0.25;">Class 5</div>
+    <input class = "scheduleEntryHolderText" type="text" id="class0entry" style="width:355px;top: 149px; left: 585.5px; z-index: 2;">
+    <input class = "scheduleEntryHolderText" type="text" id="class1entry" style="width:355px;top: 270px; left: 585.5px; z-index: 2;">
+    <input class = "scheduleEntryHolderText" type="text" id="class2entry" style="width:355px;top: 391px; left: 585.5px; z-index: 2;">
+    <input class = "scheduleEntryHolderText" type="text" id="class3entry" style="width:355px;top: 512px; left: 585.5px; z-index: 2;">
+    <input class = "scheduleEntryHolderText" type="text" id="class4entry" style="width:355px;top: 633px; left: 585.5px; z-index: 2;">
+
+    <div class = "scheduleEntryHolderText" id = "teach0" style = "top: 149px; left: 585.5px;opacity:0;">Teacher 1</div>
+    <div class = "scheduleEntryHolderText" id = "teach1" style = "top: 270px; left: 585.5px;opacity:0;">Teacher 2</div>
+    <div class = "scheduleEntryHolderText" id = "teach2" style = "top: 391px; left: 585.5px;opacity:0;">Teacher 3</div>
+    <div class = "scheduleEntryHolderText" id = "teach3" style = "top: 512px; left: 585.5px;opacity:0;">Teacher 4</div>
+    <div class = "scheduleEntryHolderText" id = "teach4" style = "top: 633px; left: 585.5px;opacity:0;">Teacher 5</div>
+    <input class = "scheduleEntryHolderText" type="text" id="teach0entry" style="width:355px;top: 149px; left: 585.5px; z-index: -1;">
+    <input class = "scheduleEntryHolderText" type="text" id="teach1entry" style="width:355px;top: 270px; left: 585.5px; z-index: -1;">
+    <input class = "scheduleEntryHolderText" type="text" id="teach2entry" style="width:355px;top: 391px; left: 585.5px; z-index: -1;">
+    <input class = "scheduleEntryHolderText" type="text" id="teach3entry" style="width:355px;top: 512px; left: 585.5px; z-index: -1;">
+    <input class = "scheduleEntryHolderText" type="text" id="teach4entry" style="width:355px;top: 633px; left: 585.5px; z-index: -1;">
+    <script>
+      function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+      function update_display() {
+        // prepare fetch options
+        let id = getCookie("id")
+        console.log(id)
+        const read_options = {
+          method: 'GET', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'omit', // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        };
+
+        // fetch the data from API
+        fetch("https://seal.nighthawkcodingsociety.com/api/users/schedules", read_options)
+          // response is a RESTful "promise" on any successful fetch
+          .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+                for (let i = 0; i<data.length; i++) {
+                    if (data[i]["userID"] == id) {
+                        let per1 = data[i]["per1"]
+                        let per2 = data[i]["per2"]
+                        let per3 = data[i]["per3"]
+                        let per4 = data[i]["per4"]
+                        let per5 = data[i]["per5"]
+                        let teach1 = data[i]["teach1"]
+                        let teach2 = data[i]["teach2"]
+                        let teach3 = data[i]["teach3"]
+                        let teach4 = data[i]["teach4"]
+                        let teach5 = data[i]["teach5"]
+                        document.getElementById("class0entry").value = per1;
+                        document.getElementById("class1entry").value = per2;
+                        document.getElementById("class2entry").value = per3;
+                        document.getElementById("class3entry").value = per4;
+                        document.getElementById("class4entry").value = per5;
+                        document.getElementById("teach0entry").value = teach1;
+                        document.getElementById("teach1entry").value = teach2;
+                        document.getElementById("teach2entry").value = teach3;
+                        document.getElementById("teach3entry").value = teach4;
+                        document.getElementById("teach4entry").value = teach5;
+                        let string = "Period 1: " + per1 + " with " + teach1 + "\nPeriod 2: " + per2 + " with " + teach2 + "\nPeriod 3: " + per3 + " with " + teach3 + "\nPeriod 4: " + per4 + " with " + teach4 + "\nPeriod 5: " + per5 + " with " + teach5
+                        console.log(string);
+                    }
+                }
+            })
+        })
+        // catch fetch errors (ie ACCESS to server blocked)
+        .catch(err => {
+          console.error(err);
+        });
+      }
+      update_display()
+    </script>
+    <img src = "./assets/svg/go_button.svg" id = "save" width = "507" height = "54" class = "loginBox" style="top:752px; left: 515px;" onclick = "go();">
+    <div class = "goText" id = "saveText" style = "top: 745px; left: 712.5px;opacity: 0.5;" onclick = "go();">save</div>
+    <!-- Main -->
+
+    </body>
+    <script src="./assets/js/animations.js"></script>
+    <script> // work on speeding up this execution
+      function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+      function checkValue (entryid, holderid, type) {
+        console.log(entryid, holderid, type)
+        console.log(side==type)
+        if ((document.getElementById(entryid).value) != "" && document.getElementById(holderid).style.opacity == "0.25" && side == type) {
+          document.getElementById(holderid).style.opacity = "0"
+        } else if ((document.getElementById(entryid).value) == "" && document.getElementById(holderid).style.opacity == "0" && side == type) {
+          document.getElementById(holderid).style.opacity = "0.25"
+        }
+      }
+      window.onkeyup = keyup;
+      function keyup(e) {
+        checkValue("class0entry", "class0", "class")
+        checkValue("class1entry", "class1", "class")
+        checkValue("class2entry", "class2", "class")
+        checkValue("class3entry", "class3", "class")
+        checkValue("class4entry", "class4", "class")
+        checkValue("teach0entry", "teach0", "teach")
+        checkValue("teach1entry", "teach1", "teach")
+        checkValue("teach2entry", "teach2", "teach")
+        checkValue("teach3entry", "teach3", "teach")
+        checkValue("teach4entry", "teach4", "teach")
+        if (document.getElementById("class0entry").value != "" && document.getElementById("class1entry").value != "" && document.getElementById("class2entry").value != "" && document.getElementById("class3entry").value != "" && document.getElementById("class4entry").value != "" && document.getElementById("teach0entry").value != "" && document.getElementById("teach1entry").value != "" && document.getElementById("teach2entry").value != "" && document.getElementById("teach3entry").value != "" && document.getElementById("teach4entry").value != "") {
+          console.log("go")
+          document.getElementById("save").src = "./assets/svg/go_button_yellow.svg";
+          document.getElementById("saveText").style.opacity = "1";
+        } else if (document.getElementById("class0entry").value == "" || document.getElementById("class1entry").value == "" || document.getElementById("class2entry").value == "" || document.getElementById("class3entry").value == "" || document.getElementById("class4entry").value == "" || document.getElementById("teach0entry").value == "" || document.getElementById("teach1entry").value == "" || document.getElementById("teach2entry").value == "" || document.getElementById("teach3entry").value == "" || document.getElementById("teach4entry").value == "") {
+          console.log("nogo")
+          document.getElementById("save").src = "./assets/svg/go_button.svg";
+          document.getElementById("saveText").style.opacity = "0.5";
+        }
+      }
+      function go() {
+        if ((document.getElementById("save").src).includes("yellow")) {
+          body = {
+              username: getCookie("username"),
+              per1: document.getElementById("class0entry").value,
+              per2: document.getElementById("class1entry").value,
+              per3: document.getElementById("class2entry").value,
+              per4: document.getElementById("class3entry").value,
+              per5: document.getElementById("class4entry").value,
+              teach1: document.getElementById("teach0entry").value,
+              teach2: document.getElementById("teach1entry").value,
+              teach3: document.getElementById("teach2entry").value,
+              teach4: document.getElementById("teach3entry").value,
+              teach5: document.getElementById("teach4entry").value
+          }
+          const requestOptions = {
+              method: 'POST',
+              mode: 'cors',
+              body: JSON.stringify(body),
+              headers: {
+                  "content-type": "application/json",
+                  'Authorization': 'Bearer my-token',
+              },
+          };
+            fetch("https://seal.nighthawkcodingsociety.com/api/users/schedules/update", requestOptions)
+              .then(response => {
+                // trap error response from Web API
+                if (response.status !== 200) {
+                  const errorMsg = 'Database create error: ' + response.status;
+                  console.log(errorMsg);
+                }
+                // response contains valid result
+            })
+        }
+      }
+    </script>
+</html>

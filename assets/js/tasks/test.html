@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./assets/js/tasks/calculateSleepTime.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// 1 means completed, 0 means not
+function httpGet() {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", "http://13.58.102.35/api/users/time", false);
+    xmlHttp.send(null);
+    json = JSON.parse(xmlHttp.responseText);
+    return json;
+}
+
+
+function calculateSleepTime(taskCompleted, times) {
+    let length = taskCompleted.length;
+    var totaltime = 0;
+    for (let i = 0; i < length; i++) {
+        if (taskCompleted[i] == "0") {
+            totaltime = totaltime + parseInt(times[i]);
+        }
+    }
+    var today = new Date();
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
+    
+    var taskMinutes = totaltime % 60;
+    totaltime = totaltime - taskMinutes;
+    var taskHours = totaltime / 60;
+    
+    hours = hours + taskHours;
+    minutes = minutes + taskMinutes;
+
+
+
+    if (minutes >= 60) {
+        hours = hours + 1;
+        minutes = minutes - 60;
+    }
+
+    var SleepTime = String(hours) + ":" + String(minutes);
+    return SleepTime;
+}
+
+
+get = httpGet();
+getTasks = get[0]["tasks"];
+getTasksCompleted = get[0]["tasksCompleted"];
+getTimes = get[0]["times"];
+
+console.log(getTasks);
+console.log(getTimes);
+console.log(getTasksCompleted)
+
+
+console.log(calculateSleepTime(getTasksCompleted, getTimes));
+
+
+
+    </script>
+</body>
+</html>
