@@ -2,7 +2,6 @@ from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource # used for REST API building
 from datetime import datetime
 from model.users import User
-from model.users import Classes as Schedules
 
 user_api = Blueprint('user_api', __name__,
                    url_prefix='/api/users')
@@ -19,9 +18,7 @@ def findUser(username):
     return user
 
 def class_obj_by_username(username):
-    """finds User in table matching username """
-    id = User.query.filter_by(_username=username).first().id
-    return Schedules.query.filter_by(id=id).first()
+    return User.query.filter_by(username=username).first()
 
 
 class UserAPI:        
@@ -87,7 +84,7 @@ class UserAPI:
     
     class _Schedules (Resource):
         def get(self):
-            users = Schedules.query.all()
+            users = Users.query.all()
             json_ready = [user.read() for user in users]
             return jsonify(json_ready)
 
@@ -96,21 +93,20 @@ class UserAPI:
             body = request.get_json()
             username = body.get('username')
             id = findId(username)
-            per1 = body.get('per1')
-            per2 = body.get('per2')
-            per3 = body.get('per3')
-            per4 = body.get('per4')
-            per5 = body.get('per5')
-            teach1 = body.get('teach1')
-            teach2 = body.get('teach2')
-            teach3 = body.get('teach3')
-            teach4 = body.get('teach4')
-            teach5 = body.get('teach5')
+            p1 = body.get('p1')
+            p2 = body.get('p2')
+            p3 = body.get('p3')
+            p4 = body.get('p4')
+            p5 = body.get('p5')
+            t1 = body.get('t1')
+            t2 = body.get('t2')
+            t3 = body.get('t3')
+            t4 = body.get('t4')
+            t5 = body.get('t5')
             user = class_obj_by_username(username)
             print(user)
-            print(id)
             if user:
-                user.update(id=id, per1=per1, per2=per2, per3=per3, per4=per4, per5=per5, teach1=teach1, teach2=teach2, teach3=teach3, teach4=teach4, teach5=teach5)
+                user.update(p1=p1, p2=p2, p3=p3, p4=p4, p5=p5, t1=t1, t2=t2, t3=t3, t4=t4, t5=t5)
             else:
                 return {'message': f"unable to find user '{username}'"}, 210
             return user.read()

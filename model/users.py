@@ -9,94 +9,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # Define the Post class to manage actions in 'posts' table,  with a relationship to 'users' table
 
-class Classes(db.Model):
-    __tablename__ = 'classes'
-
-    # Define the Classes schema
-    id = db.Column(db.Integer, primary_key=True)
-    # Define a relationship in classes Schema to userID who originates the classes, many-to-one (many classes to one user)
-    userID = db.Column(db.Integer, db.ForeignKey('users.id'))
-
-    per1 = db.Column(db.String(255), unique=False, nullable=False)
-    per2 = db.Column(db.String(255), unique=False, nullable=False)
-    per3 = db.Column(db.String(255), unique=False, nullable=False)
-    per4 = db.Column(db.String(255), unique=False, nullable=False)
-    per5 = db.Column(db.String(255), unique=False, nullable=False)
-    teach1 = db.Column(db.String(255), unique=False, nullable=False)
-    teach2 = db.Column(db.String(255), unique=False, nullable=False)
-    teach3 = db.Column(db.String(255), unique=False, nullable=False)
-    teach4 = db.Column(db.String(255), unique=False, nullable=False)
-    teach5 = db.Column(db.String(255), unique=False, nullable=False)
-    
-
-    # Constructor of a Notes object, initializes of instance variables within object
-    def __init__(self, id, per1, per2, per3, per4, per5, teach1, teach2, teach3, teach4, teach5):
-        self.userID = id
-        self.per1 = per1
-        self.per2 = per2
-        self.per3 = per3
-        self.per4 = per4
-        self.per5 = per5
-        self.teach1 = teach1
-        self.teach2 = teach2
-        self.teach3 = teach3
-        self.teach4 = teach4
-        self.teach5 = teach5
-        
-
-
-    # Returns a string representation of the Notes object, similar to java toString()
-    # returns string
-    def __repr__(self):
-        return "Classes(" + str(self.userID) + "," + self.per1 + "," + self.per2 + "," + self.per3 + "," + self.per4 + "," + self.per5  + "," + self.teach1 + "," + self.teach2 + "," + self.teach3 + "," + self.teach4 + "," + self.teach5  + ","+ str(self.userID) + ")"
-
-    # CRUD create, adds a new record to the Notes table
-    # returns the object added or None in case of an error
-    def create(self):
-        try:
-            # creates a Notes object from Notes(db.Model) class, passes initializers
-            db.session.add(self)  # add prepares to persist person object to Notes table
-            db.session.commit()  # SqlAlchemy "unit of work pattern" requires a manual commit
-            return self
-        except IntegrityError:
-            db.session.remove()
-            return None
-
-    # CRUD read, returns dictionary representation of Notes object
-    # returns dictionary
-    def read(self):
-        
-        return {
-            "userID": self.userID,
-            "per1": self.per1,
-            "per2": self.per2,
-            "per3": self.per3,
-            "per4": self.per4,
-            "per5": self.per5,
-            "teach1": self.teach1,
-            "teach2": self.teach2,
-            "teach3": self.teach3,
-            "teach4": self.teach4,
-            "teach5": self.teach5
-        }
-
-    def update(self, id="", per1="", per2="", per3="", per4="", per5="", teach1="", teach2="", teach3="", teach4="", teach5=""):
-        #only updates values with length
-        self.userID = id
-        if len(per1) and len(per2) and len(per3) and len(per4) and len(per5) and len(teach1) and len(teach2) and len(teach3) and len(teach4) and len(teach5)> 0:
-            self.per1 = per1
-            self.per2 = per2
-            self.per3 = per3
-            self.per4 = per4
-            self.per5 = per5
-            self.teach1 = teach1
-            self.teach2 = teach2
-            self.teach3 = teach3
-            self.teach4 = teach4
-            self.teach5 = teach5
-        db.session.commit()
-        return self
-
 class User(db.Model):
     __tablename__ = 'users'  # table name is plural, class name is singular
 
@@ -107,44 +19,51 @@ class User(db.Model):
     _username = db.Column(db.Text, unique=True, nullable=False)
     _fullname = db.Column(db.Text, unique=False, nullable=False)
     _password = db.Column(db.Text, unique=False, nullable=False)
-    _grade = db.Column(db.Integer, unique=False, nullable=False)
+    _grade = db.Column(db.Integer, unique=False, nullable=True)
+    _p1 = db.Column(db.Text, unique=False, nullable=False)
+    _t1 = db.Column(db.Text, unique=False, nullable=False)
+    _p2 = db.Column(db.Text, unique=False, nullable=False)
+    _t2 = db.Column(db.Text, unique=False, nullable=False)
+    _p3 = db.Column(db.Text, unique=False, nullable=False)
+    _t3 = db.Column(db.Text, unique=False, nullable=False)
+    _p4 = db.Column(db.Text, unique=False, nullable=False)
+    _t4 = db.Column(db.Text, unique=False, nullable=False)
+    _p5 = db.Column(db.Text, unique=False, nullable=False)
+    _t5 = db.Column(db.Text, unique=False, nullable=False)
     
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, username, fullname, password="letmein", grade=9):
+    def __init__(self, username, fullname, password="Password1!", grade=None, p1=None, p2=None, p3=None, p4=None, p5=None, t1=None, t2=None, t3=None, t4=None, t5=None):
         self._username = username    # variables with self prefix become part of the object, 
         self._fullname = fullname
         self.set_password(password)
-        self._grade = grade
+        self._p1 = p1
+        self._t1 = t1
+        self._p2 = p2
+        self._t2 = t2
+        self._p3 = p3
+        self._t3 = t3
+        self._p4 = p4
+        self._t4 = t4
+        self._p5 = p5
+        self._t5 = t5
 
-    # a name getter method, extracts name from object
     @property
     def username(self):
         return self._username
-    
-
-    # a setter function, allows name to be updated after initial object creation
     @username.setter
     def username(self, username):
         self._username = username
-    
-    # a getter method, extracts email from object
+
     @property
     def fullname(self):
         return self._fullname
-    
-    # a setter function, allows name to be updated after initial object creation
     @fullname.setter
     def fullname(self, fullname):
         self._fullname = fullname
 
-    def get_id(self):
-        return self.id
-    
     @property
     def password(self):
         return self._password[0:5] + "..." # because of security only show 1st characters
-
-    # update password, this is conventional setter
     def set_password(self, password):
         #Create a hashed password.
         self._password = generate_password_hash(password, method='sha512')
@@ -158,15 +77,77 @@ class User(db.Model):
         else:
             return False
     
-    # dob property is returned as string, to avoid unfriendly outcomes
     @property
     def grade(self):
         return self._grade
-    
-    # a setter function, allows name to be updated after initial object creation
     @grade.setter
     def grade(self, grade):
         self._grade = grade
+    
+    @property
+    def p1(self):
+        return self._p1
+    @p1.setter
+    def p1(self, p1):
+        self._p1 = p1
+    @property
+    def t1(self):
+        return self._t1
+    @t1.setter
+    def t1(self, t1):
+        self._t1 = t1
+    
+    @property
+    def p2(self):
+        return self._p2
+    @p2.setter
+    def p2(self, p2):
+        self._p2 = p2
+    @property
+    def t2(self):
+        return self._t2
+    @t2.setter
+    def t2(self, t2):
+        self._t2 = t2
+    
+    @property
+    def p3(self):
+        return self._p3
+    @p3.setter
+    def p3(self, p3):
+        self._p3 = p3
+    @property
+    def t3(self):
+        return self._t3
+    @t3.setter
+    def t3(self, t3):
+        self._t3 = t3
+    
+    @property
+    def p4(self):
+        return self._p4
+    @p4.setter
+    def p4(self, p4):
+        self._p4 = p4
+    @property
+    def t4(self):
+        return self._t4
+    @t4.setter
+    def t4(self, t4):
+        self._t4 = t4
+    
+    @property
+    def p5(self):
+        return self._p5
+    @p5.setter
+    def p5(self, p5):
+        self._p5 = p5
+    @property
+    def t5(self):
+        return self._t5
+    @t5.setter
+    def t5(self, t5):
+        self._t5 = t5
     
     # output content using str(object) in human readable form, uses getter
     # output content using json dumps, this is ready for API response
@@ -175,14 +156,17 @@ class User(db.Model):
 
     # CRUD create/add a new record to the table
     # returns self or None on error
-    def create(self):
+    def create(self, username="", fullname="", password="", grade=9, p1="", p2="", p3="", p4="", p5="", t1="", t2="", t3="", t4="", t5=""):
         try:
             # creates a person object from User(db.Model) class, passes initializers
             db.session.add(self)  # add prepares to persist person object to Users table
             db.session.commit()  # SqlAlchemy "unit of work pattern" requires a manual commit
+            print("User create")
             return self
-        except IntegrityError:
+        except IntegrityError as e:
             db.session.remove()
+            print("User create failed")
+            print(e)
             return None
 
     # CRUD read converts self to dictionary
@@ -190,14 +174,17 @@ class User(db.Model):
     
     def read(self):
         return {
-            "id": self.id,
             "username": self.username,
             "fullname": self.fullname,
             "grade": self.grade,
-            "classes": [period.read() for period in self.classes],
+            "p1": self.p1 + ";" + self.t1,
+            "p2": self.p2 + ";" + self.t2,
+            "p3": self.p3 + ";" + self.t3,
+            "p4": self.p4 + ";" + self.t4,
+            "p5": self.p5 + ";" + self.t5
         }
 
-    def update(self, username="", fullname="", password=""):
+    def update(self, username="", fullname="", password="", grade="", p1="", p2="", p3="", p4="", p5="", t1="", t2="", t3="", t4="", t5=""):
         #only updates values with length
         if len(username) > 0:
             self.username = username
@@ -205,6 +192,31 @@ class User(db.Model):
             self.fullname = fullname
         if len(password) > 0:
             self.set_password(password)
+        if len(p1) > 0:
+            self.p1 = p1
+        if len(t1) > 0:
+            self.t1 = t1
+        if len(p2) > 0:
+            self.p2 = p2
+        if len(t2) > 0:
+            self.t2 = t2
+        if len(p3) > 0:
+            self.p3 = p3
+        if len(t3) > 0:
+            self.t3 = t3
+        if len(p4) > 0:
+            self.p4 = p4
+        if len(t4) > 0:
+            self.t4 = t4
+        if len(p5) > 0:
+            self.p5 = p5
+        if len(t5) > 0:
+            self.t5 = t5
+        if len(p6) > 0:
+            self.p6 = p6
+        if len(t6) > 0:
+            self.t6 = t6
+        
         db.session.commit()
         return self
 
@@ -213,9 +225,6 @@ class User(db.Model):
         db.session.commit()
         return None
 
-
-
-# Builds working data for testing
 def initUsers():
     with app.app_context():
         """Create database and tables"""
@@ -223,26 +232,20 @@ def initUsers():
         db.create_all()
 
         
-        u1 = User(username='eris29', id=u1.id, fullname='Alexander Lu', password='CyberPatriot1!', grade=11, per1="AP English Language", per2="AP Calculus BC", per3="AP Physics C: Mechanics", per4="Court Sports", per5="AP Computer Science: Principles", teach1="Cara-Lisa Jenkins", teach2="Michelle Lanzi-Sheaman", teach3="Ifeng Liao", teach4="Dale Hanover", teach5="Sean Yeung")
-        u2 = User(username='dolfin', fullname='Ethan Zhao', password='CyberPatriot2@', grade=10)
-        u2 = User(username='dolfin', fullname='Ethan Zhao', password='CyberPatriot3#', grade=11)
-        u3 = User(username='shattered', fullname='Sophia Tang', password='CyberPatriot3#', grade=10)
-        u4 = User(username='calicocat', fullname='Lily Wu', password='CyberPatriot4$', grade=11)
+        u1 = User(username='eris29', fullname='Alexander Lu', password='CyberPatriot1!', grade=11, p1="AP English Language", p2="AP Calculus BC", p3="AP Physics C: Mechanics", p4="Court Sports", p5="AP Computer Science: Principles", t1="Cara-Lisa Jenkins", t2="Michelle Lanzi-Sheaman", t3="Ifeng Liao", t4="Dale Hanover", t5="Sean Yeung")
+        u2 = User(username='dolfin', fullname='Ethan Zhao', password='CyberPatriot2@', grade=10, p1="AP Calculus AB", p2="AP Biology", p3="Honors Humanities 2", p4="AP Chinese", p5="AP Computer Science: Principles", t1="Briana West", t2="Julia Cheskaty", t3="Jennifer Philyaw", t4="Ying Tzy Lin", t5="Sean Yeung")
+        u3 = User(username='shattered', fullname='Sophia Tang', password='CyberPatriot3#', grade=10, p1="AP Chemistry", p2="Intro to Finance", p3="AP World History", p4="AP Calculus AB", p5="AP Computer Science: Principles", t1="Kenneth Ozuna", t2="Amanda Nelson", t3="Megan Volger", t4="Cherie Nydam", t5="Sean Yeung")
+        u4 = User(username='calicocat', fullname='Lily Wu', password='CyberPatriot4$', grade=11, p1="AP English Language", p2="AP Computer Science A", p3="AP US History", p4="AP Statistics", p5="AP Computer Science: Principles", t1="Cara-Lisa Jenkins", t2="John Mortensen", t3="Thomas Swanson", t4="Michelle Derksen", t5="Sean Yeung")
 
-        # Inserting test data into Classes table
-        #u1.append(Classes())
-        #u2.append(Classes(id=u2.id, per1="AP Calculus AB", per2="AP Biology", per3="Honors Humanities 2", per4="AP Chinese", per5="AP Computer Science: Principles", teach1="Briana West", teach2="Julia Cheskaty", teach3="Jennifer Philyaw", teach4="Ying Tzy Lin", teach5="Sean Yeung"))
-        #u3.append(Classes(id=u3.id, per1="AP Chemistry", per2="Intro to Finance", per3="AP World History", per4="AP Calculus AB", per5="AP Computer Science: Principles", teach1="Kenneth Ozuna", teach2="Amanda Nelson", teach3="Megan Volger", teach4="Cherie Nydam", teach5="Sean Yeung"))
-        #u4.append(Classes(id=u4.id, per1="AP English Language", per2="AP Computer Science A", per3="AP US History", per4="AP Statistics", per5="AP Computer Science: Principles", teach1="Cara-Lisa Jenkins", teach2="John Mortensen", teach3="Thomas Swanson", teach4="Michelle Derksen", teach5="Sean Yeung"))
-        
         users = [u1, u2, u3, u4]
         for user in users:
             try:
                 user.create()
+                print(f"Created user: {user.username}")
             except IntegrityError:
                 '''fails with bad or duplicate data'''
                 db.session.remove()
-                print(f"Records exist, duplicate uid, or error: {user.uid}")
+                print(f"Records exist, duplicate username, or error: {user.username}")
         
         
     
