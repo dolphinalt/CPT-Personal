@@ -7,20 +7,22 @@
     <title>Classes</title>
     <link rel="stylesheet" href="./assets/style.css">
 </head>
-<body class = "body" >
-    <div id="login" style="opacity:0;pointer-events: all;">
+<body class = "body" onload="init()">
+    <div id="login" style="opacity:0;pointer-events: none;">
         <img src="./assets/svg/loginbox.svg" alt="loginbox" class = "loginbox" width="600" height="729" style="position:absolute;left:660px;top:175px;">
         <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:427px;">
         <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:567px;">
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:393px;">
         <img src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:533px;">
-        <input type="text" class = "username" placeholder="Type your username" style="position:absolute;left:753px;top:393px;">
-        <input type="text" class = "username" placeholder="Type your username" style="position:absolute;left:753px;top:533px;">
+        <div id="usernametext" class="logintext" style="position:absolute;left:712px;top:363px;" onclick="switchPage('login','signup')">Username</div>
+        <input type="text" id = "username" placeholder="Type your username" style="position:absolute;left:753px;top:393px;">
+        <div id="passwordtext" class="logintext" style="position:absolute;left:712px;top:503px;" onclick="switchPage('login','signup')">Password</div>
+        <input type="password" id = "password" placeholder="Type your username" style="position:absolute;left:753px;top:533px;">
         <img src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:644px;">
         <div id="gotosignup" class="using" style="position:absolute;left:880px;top:763px;opacity:0.75;">Or sign up using</div>
         <div id="gotosignup" class="using" style="position:absolute;left:919px;top:807px;" onclick="switchPage('login','signup')">SIGN UP</div>
     </div>
-    <div id="signup" style="opacity:1;pointer-events: none;">
+    <div id="signup" style="opacity:0;pointer-events: none;">
         <img src="./assets/svg/signupbox.svg" alt="loginbox" class = "loginbox" width="600" height="885" style="position:absolute;left:660px;top:97px;">
         <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:362px;">
         <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:502px;">
@@ -28,15 +30,24 @@
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:328px;">
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:469px;">
         <img src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:609px;">
-        <input type="text" class = "username" placeholder="Type your full name" style="position:absolute;left:753px;top:328px;">
-        <input type="text" class = "username" placeholder="Type your username" style="position:absolute;left:753px;top:469px;">
-        <input type="text" class = "username" placeholder="Type your username" style="position:absolute;left:753px;top:609px;">
-        <img src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:644px;">
-        <div id="gotologin" class="using" style="position:absolute;left:880px;top:763px;opacity:0.75;">Or log in using</div>
-        <div id="gotologin" class="using" style="position:absolute;left:919px;top:807px;" onclick="switchPage('signup','login')">LOG IN</div>
+        <div id="usernametext" class="logintext" style="position:absolute;left:712px;top:298px;" onclick="switchPage('login','signup')">Full Name</div>
+        <input type="text" id = "fullname" placeholder="Type your full name" style="position:absolute;left:753px;top:328px;">
+        <div id="usernametext" class="logintext" style="position:absolute;left:712px;top:439px;" onclick="switchPage('login','signup')">Username</div>
+        <input type="text" id = "username" placeholder="Type your username" style="position:absolute;left:753px;top:469px;">
+        <div id="passwordtext" class="logintext" style="position:absolute;left:712px;top:579px;" onclick="switchPage('login','signup')">Password</div>
+        <input type="password" id = "password" placeholder="Type your username" style="position:absolute;left:753px;top:609px;">
+        <img src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:720px;">
+        <div id="gotologin" class="using" style="position:absolute;left:880px;top:842px;opacity:0.75;">Or log in using</div>
+        <div id="gotologin" class="using" style="position:absolute;left:919px;top:886px;" onclick="switchPage('signup','login')">LOG IN</div>
     </div>
 </body>
 <script>
+    function init() {
+        // if user logged in, go directly to classes
+        // if user not logged in go to login page
+        document.getElementById("login").style.opacity = "1";
+        document.getElementById("login").style.pointerEvents = "all";
+    }
     function switchPage(current, page) {
         document.getElementById(current).style.opacity = "0";
         document.getElementById(current).style.pointerEvents = "none";

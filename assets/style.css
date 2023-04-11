@@ -16,12 +16,26 @@
     font-family: Inter-Bold;
 }
 
+.logintext {
+    font-family: Inter-Bold;
+    font-size: 20px;
+}
+
 .using {
     font-family: Inter-Bold;
     font-size: 20px;
 }
 
 input[type="text"] {
+    font-family: Inter-Bold;
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    outline: none;
+    opacity: 0.5;
+}
+
+input[type="password"] {
     font-family: Inter-Bold;
     font-size: 20px;
     background: transparent;
