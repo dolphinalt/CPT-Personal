@@ -9,36 +9,45 @@
 </head>
 <body class = "body" onload="init()">
     <div id="login" style="opacity:0;pointer-events: none;">
-        <img src="./assets/svg/loginbox.svg" alt="loginbox" class = "loginbox" width="600" height="729" style="position:absolute;left:660px;top:175px;">
-        <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:427px;">
-        <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:567px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:393px;">
-        <img src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:533px;">
-        <div id="usernametext" class="logintext" style="position:absolute;left:712px;top:363px;">Username</div>
-        <input type="text" id = "username" placeholder="Type your username" style="position:absolute;left:753px;top:393px;">
-        <div id="passwordtext" class="logintext" style="position:absolute;left:712px;top:503px;">Password</div>
-        <input type="password" id = "password" placeholder="Type your username" style="position:absolute;left:753px;top:533px;">
-        <img src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:644px;" onclick="verifyLogin()">
-        <div id="gotosignup" class="using" style="position:absolute;left:880px;top:763px;opacity:0.75;">Or sign up using</div>
-        <div id="gotosignup" class="using" style="position:absolute;left:919px;top:807px;" onclick="switchPage('login','signup')">SIGN UP</div>
+        <img    id="loginbox"               src="./assets/svg/loginbox.svg" alt="loginbox" class = "loginbox" width="600" height="729" style="position:absolute;left:660px;top:175px;">
+        
+        <div    id="loginUsernameText"      class="logintext" style="position:absolute;left:712px;top:363px;">Username</div>
+        <img    id="loginUsernameIcon"      src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:393px;">
+        <input  id="loginUsername"          type="text" placeholder="Type your username" style="position:absolute;left:753px;top:393px;">
+        <img    id="loginUsernameUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:427px;">
+
+        <div    id="loginPasswordText"      class="logintext" style="position:absolute;left:712px;top:503px;">Password</div>
+        <img    id="loginPasswordIcon"      src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:533px;">
+        <input  id = "loginPassword"        type="loginPassword" placeholder="Type your username" style="position:absolute;left:753px;top:533px;">
+        <img    id="loginPasswordUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:567px;">
+
+        <img    id="loginButton"            src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:644px;" onclick="verifyLogin()">
+
+        <div    id="goToSignupText"         class="using" style="position:absolute;left:880px;top:763px;opacity:0.75;">Or sign up using</div>
+        <div    id="goToSignUp"             class="using" style="position:absolute;left:919px;top:807px;" onclick="switchPage('login','signup')">SIGN UP</div>
     </div>
     <div id="signup" style="opacity:0;pointer-events: none;">
-        <img src="./assets/svg/signupbox.svg" alt="signupbox" class = "signupbox" width="600" height="885" style="position:absolute;left:660px;top:97px;">
-        <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:362px;">
-        <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:502px;">
-        <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:643px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:328px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:469px;">
-        <img src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:609px;">
-        <div id="usernametext" class="logintext" style="position:absolute;left:712px;top:298px;">Full Name</div>
-        <input type="text" id = "fullname" placeholder="Type your full name" style="position:absolute;left:753px;top:328px;">
-        <div id="usernametext" class="logintext" style="position:absolute;left:712px;top:439px;">Username</div>
-        <input type="text" id = "username" placeholder="Type your username" style="position:absolute;left:753px;top:469px;">
-        <div id="passwordtext" class="logintext" style="position:absolute;left:712px;top:579px;">Password</div>
-        <input type="password" id = "password" placeholder="Type your username" style="position:absolute;left:753px;top:609px;">
-        <img src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:720px;">
-        <div id="gotologin" class="using" style="position:absolute;left:880px;top:842px;opacity:0.75;">Or log in using</div>
-        <div id="gotologin" class="using" style="position:absolute;left:919px;top:886px;" onclick="switchPage('signup','login')">LOG IN</div>
+        <img    id="signupbox"              src="./assets/svg/signupbox.svg" alt="signupbox" class = "signupbox" width="600" height="885" style="position:absolute;left:660px;top:97px;">
+        
+        <div    id="signupFullnameText"     class="logintext" style="position:absolute;left:712px;top:298px;">Full Name</div>
+        <img    id="signupFullnameIcon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:328px;">
+        <input  id="signupFullname"         type="text" placeholder="Type your full name" style="position:absolute;left:753px;top:328px;">
+        <img    id="signupFullnameUnderbar" src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:362px;">
+        
+        <div    id="signupUsernameText"     class="logintext" style="position:absolute;left:712px;top:439px;">Username</div>
+        <img    id="signupUsernameIcon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:469px;">
+        <input  id="signupUsername"         type="text" placeholder="Type your username" style="position:absolute;left:753px;top:469px;">
+        <img    id="signupUsernameUnderbar" src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:502px;">
+        
+        <div    id="signupPasswordText"     class="logintext" style="position:absolute;left:712px;top:579px;">Password</div>
+        <img    id="signupPasswordIcon"     src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:609px;">
+        <input  id = "signupPassword"       type="password" placeholder="Type your username" style="position:absolute;left:753px;top:609px;">
+        <img    id="signupPassordUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:643px;">
+        
+        <img    id="signupButton"           src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:720px;">
+        
+        <div    id="goToLoginText"          class="using" style="position:absolute;left:880px;top:842px;opacity:0.75;">Or log in using</div>
+        <div    id="goToLogin"              class="using" style="position:absolute;left:919px;top:886px;" onclick="switchPage('signup','login')">LOG IN</div>
     </div>
     <div id="main" style="opacity:0;pointer-events: none;">
         <img src="./assets/svg/schedulebox.svg" alt="schedulebox" class = "signupbox" width="1704" height="885" style="position:absolute;left:108px;top:97px;">
@@ -89,8 +98,8 @@
     function init() {
         // if user logged in, go directly to classes
         // if user not logged in go to login page
-        document.getElementById("main").style.opacity = "1";
-        document.getElementById("main").style.pointerEvents = "all";
+        document.getElementById("login").style.opacity = "1";
+        document.getElementById("login").style.pointerEvents = "all";
     }
     function verifyLogin() {
         // Send request to backend with credentials
