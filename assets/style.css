@@ -26,6 +26,11 @@
     font-size: 20px;
 }
 
+.maintext {
+    font-family: Inter-Bold;
+    font-size: 20px;
+}
+
 input[type="text"] {
     font-family: Inter-Bold;
     font-size: 20px;

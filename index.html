@@ -18,7 +18,7 @@
 
         <div    id="loginPasswordText"      class="logintext" style="position:absolute;left:712px;top:503px;">Password</div>
         <img    id="loginPasswordIcon"      src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:533px;">
-        <input  id = "loginPassword"        type="loginPassword" placeholder="Type your username" style="position:absolute;left:753px;top:533px;">
+        <input  id = "loginPassword"        type="password" placeholder="Type your username" style="position:absolute;left:753px;top:533px;">
         <img    id="loginPasswordUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:567px;">
 
         <img    id="loginButton"            src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:644px;" onclick="verifyLogin()">
@@ -66,11 +66,11 @@
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:870px;top:326px;">
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1163px;top:326px;">
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1456px;top:326px;">
-        <div id="classtext" class="classtext" style="position:absolute;left:274px;top:296px;">Period 1</div>
-        <div id="classtext" class="classtext" style="position:absolute;left:567px;top:296px;">Period 2</div>
-        <div id="classtext" class="classtext" style="position:absolute;left:860px;top:296px;">Period 3</div>
-        <div id="classtext" class="classtext" style="position:absolute;left:1153px;top:296px;">Period 4</div>
-        <div id="classtext" class="classtext" style="position:absolute;left:1446px;top:296px;">Period 5</div>
+        <div id="classtext" class="maintext" style="position:absolute;left:274px;top:296px;">Period 1</div>
+        <div id="classtext" class="maintext" style="position:absolute;left:567px;top:296px;">Period 2</div>
+        <div id="classtext" class="maintext" style="position:absolute;left:860px;top:296px;">Period 3</div>
+        <div id="classtext" class="maintext" style="position:absolute;left:1153px;top:296px;">Period 4</div>
+        <div id="classtext" class="maintext" style="position:absolute;left:1446px;top:296px;">Period 5</div>
 
         <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:274px;top:483px;">
         <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:567px;top:483px;">
@@ -87,19 +87,30 @@
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:870px;top:447px;">
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1163px;top:447px;">
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1456px;top:447px;">
-        <div id="teachertext" class="teachertext" style="position:absolute;left:274px;top:417px;">Teacher 1</div>
-        <div id="teachertext" class="teachertext" style="position:absolute;left:567px;top:417px;">Teacher 2</div>
-        <div id="teachertext" class="teachertext" style="position:absolute;left:860px;top:417px;">Teacher 3</div>
-        <div id="teachertext" class="teachertext" style="position:absolute;left:1153px;top:417px;">Teacher 4</div>
-        <div id="teachertext" class="teachertext" style="position:absolute;left:1446px;top:417px;">Teacher 5</div>
+        <div id="teachertext" class="maintext" style="position:absolute;left:274px;top:417px;">Teacher 1</div>
+        <div id="teachertext" class="maintext" style="position:absolute;left:567px;top:417px;">Teacher 2</div>
+        <div id="teachertext" class="maintext" style="position:absolute;left:860px;top:417px;">Teacher 3</div>
+        <div id="teachertext" class="maintext" style="position:absolute;left:1153px;top:417px;">Teacher 4</div>
+        <div id="teachertext" class="maintext" style="position:absolute;left:1446px;top:417px;">Teacher 5</div>
+
+        <img id="updatebutton" src="./assets/svg/updateschedulebutton.svg" alt="unicon" class = "unicon" width="448" height="50" style="position:absolute;left:736px;top:558px;">
+
+        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:643px;">
+        <div id="teachertext" class="maintext" style="position:absolute;left:315px;top:643px;">Classmate 1</div>
+
+        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:643px;">
+        <div id="teachertext" class="maintext" style="position:absolute;left:608px;top:643px;">Classmate 2</div>
+
+        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:703px;">
+        <div id="teachertext" class="maintext" style="position:absolute;left:608px;top:703px;">Classmate 2</div>
     </div>
 </body>
 <script>
     function init() {
         // if user logged in, go directly to classes
         // if user not logged in go to login page
-        document.getElementById("login").style.opacity = "1";
-        document.getElementById("login").style.pointerEvents = "all";
+        document.getElementById("main").style.opacity = "1";
+        document.getElementById("main").style.pointerEvents = "all";
     }
     function verifyLogin() {
         // Send request to backend with credentials
