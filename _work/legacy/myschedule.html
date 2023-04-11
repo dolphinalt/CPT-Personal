@@ -11,8 +11,8 @@
   </head>
   <body class = "elseBody" onload="resize();">
     <!-- Navbar at the top -->
-    <img src = "./assets/svg/logo_yellow.svg" id = "navbar0" onclick = "showSidebar();" width = "54.5" height = "54.5" class = "logo" style="top: 32px; left: 17px;">
-    <div class = "navbar" id = "navbar1" onclick = "showSidebar();" style = "top: 37px; left: 89px;">MYTOOLKIT</div>
+    <img src = "./assets/svg/logo_yellow.svg" id = "navbar0" onclick = "" width = "54.5" height = "54.5" class = "logo" style="top: 32px; left: 17px;">
+    <div class = "navbar" id = "navbar1" onclick = "" style = "top: 37px; left: 89px;">MYTOOLKIT</div>
     <div class = "navbar" id = "navbar2" style = "top: 37px; left: 1168px;opacity: 1;" onclick="window.location = './schedules.html'">SCHEDULE</div>
     <div class = "navbar" id = "navbar2" style = "top: 37px; left: 944px;opacity: 0.25;" onclick="window.location = './myschedule.html'">CLASSMATES</div>
     <div class = "navbar" id = "navbar3" style = "top: 37px; left: 1360px;" onclick="window.location = './login.html';">LOGIN</div>
@@ -108,7 +108,7 @@
         };
 
         // fetch the data from API
-        fetch("https://seal.nighthawkcodingsociety.com/api/users/schedules", read_options)
+        fetch("http://127.0.0.1:8133/api/users/", read_options)
           // response is a RESTful "promise" on any successful fetch
           .then(response => {
             // check for response errors

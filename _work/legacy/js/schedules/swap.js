@@ -1,15 +1,15 @@
+function swapObject (left, top, width, index, src, object) {
+  document.getElementById(object).style.left = left + "px";
+  document.getElementById(object).style.top = top + "px";
+  document.getElementById(object).width = width;
+  document.getElementById(object).src = src;
+  document.getElementById(object).style.zIndex = index;
+}
+
 function swap (direction) {
     if (direction == "left") {
-      document.getElementById("schedule0").style.left = "515px";
-      document.getElementById("schedule0").style.top = "91px";
-      document.getElementById("schedule0").width = "507";
-      document.getElementById("schedule0").src = "./assets/svg/schedulebox_main.svg";
-      document.getElementById("schedule0").style.zIndex = 1;
-      document.getElementById("schedule1").style.left = "901px";
-      document.getElementById("schedule1").style.top = "136px";
-      document.getElementById("schedule1").width = "432";
-      document.getElementById("schedule1").src = "./assets/svg/schedulebox_back.svg";
-      document.getElementById("schedule1").style.zIndex = 0;
+      swapObject(515, 91, 507, 1, "./assets/svg/schedulebox_main.svg", "schedule0");
+      swapObject(901, 136, 432, 0, "./assets/svg/schedulebox_back.svg", "schedule1");
       document.getElementById("class0").style.opacity = "0.25";
       document.getElementById("class1").style.opacity = "0.25";
       document.getElementById("class2").style.opacity = "0.25";
@@ -41,15 +41,8 @@ function swap (direction) {
       document.getElementById("teach4entry").style.opacity = "0";
       document.getElementById("teach4entry").style.zIndex = "-1";
     } else if (direction == "right") {
-      document.getElementById("schedule0").style.left = "201px";
-      document.getElementById("schedule0").style.top = "136px";
-      document.getElementById("schedule0").width = "432";
-      document.getElementById("schedule0").style.zIndex = 0;
-      document.getElementById("schedule1").style.left = "515px";
-      document.getElementById("schedule1").style.top = "91px";
-      document.getElementById("schedule1").width = "507";
-      document.getElementById("schedule1").style.zIndex = 1;
-      document.getElementById("schedule0").src = "./assets/svg/schedulebox_back.svg";
+      swapObject(201, 136, 432, 0, "./assets/svg/schedulebox_back.svg", "schedule0");
+      swapObject(515, 91, 507, 1, "./assets/svg/schedulebox_main.svg", "schedule1");
       document.getElementById("schedule0").class = "scheduleMid";
       document.getElementById("schedule1").src = "./assets/svg/schedulebox_main.svg";
       document.getElementById("schedule1").class = "scheduleTop";

@@ -173,15 +173,12 @@ class User(db.Model):
     # returns dictionary
     
     def read(self):
+        classes = [self.p1 + ";" + self.t1, self.p2 + ";" + self.t2, self.p3 + ";" + self.t3, self.p4 + ";" + self.t4, self.p5 + ";" + self.t5]
         return {
             "username": self.username,
             "fullname": self.fullname,
             "grade": self.grade,
-            "p1": self.p1 + ";" + self.t1,
-            "p2": self.p2 + ";" + self.t2,
-            "p3": self.p3 + ";" + self.t3,
-            "p4": self.p4 + ";" + self.t4,
-            "p5": self.p5 + ";" + self.t5
+            "classes": classes
         }
 
     def update(self, username="", fullname="", password="", grade="", p1="", p2="", p3="", p4="", p5="", t1="", t2="", t3="", t4="", t5=""):
@@ -246,6 +243,3 @@ def initUsers():
                 '''fails with bad or duplicate data'''
                 db.session.remove()
                 print(f"Records exist, duplicate username, or error: {user.username}")
-        
-        
-    
