@@ -1,0 +1,47 @@
+<script>
+function loadUser() {
+    users = [{"fullname": "Alexander Lu","grade": null,"p1": "AP English Language;Cara-Lisa Jenkins","p2": "AP Calculus BC;Michelle Lanzi-Sheaman","p3": "AP Physics C: Mechanics;Ifeng Liao","p4": "Court Sports;Dale Hanover","p5": "AP Computer Science: Principles;Sean Yeung","username": "eris29"},{ "fullname": "Ethan Zhao","grade": null,"p1": "AP Calculus AB;Briana West","p2": "AP Biology;Julia Cheskaty","p3": "Honors Humanities 2;Jennifer Philyaw","p4": "AP Chinese;Ying Tzy Lin","p5": "AP Computer Science: Principles;Sean Yeung","username": "dolfin"},{"fullname": "Sophia Tang","grade": null,"p1": "AP Chemistry;Kenneth Ozuna","p2": "Intro to Finance;Amanda Nelson","p3": "AP World History;Megan Volger","p4": "AP Calculus AB;Cherie Nydam","p5": "AP Computer Science: Principles;Sean Yeung","username": "shattered"},{"fullname": "Lily Wu","grade": null,"p1": "AP English Language;Cara-Lisa Jenkins","p2": "AP Computer Science A;John Mortensen","p3": "AP US History;Thomas Swanson","p4": "AP Statistics;Michelle Derksen","p5": "AP Computer Science: Principles;Sean Yeung","username": "calicocat"}]
+    name = document.getElementById("username").value;
+    console.log(name)
+    for (i in users) {
+        if (users[i]["username"] == name) {
+            fullname = users[i]["fullname"]
+            p1 = (users[i]["p1"]).split(";");
+            p2 = (users[i]["p2"]).split(";");
+            p3 = (users[i]["p3"]).split(";");
+            p4 = (users[i]["p4"]).split(";");
+            p5 = (users[i]["p5"]).split(";");
+
+            class1 = p1[0];
+            class2 = p2[0];
+            class3 = p3[0];
+            class4 = p4[0];
+            class5 = p5[0];
+            teacher1 = p1[1];
+            teacher2 = p2[1];
+            teacher3 = p3[1];
+            teacher4 = p4[1];
+            teacher5 = p5[1];
+
+            console.log(fullname)
+            console.log(class1)
+            console.log(class2)
+            console.log(class3)
+            console.log(class4)
+            console.log(class5)
+            console.log(teacher1)
+            console.log(teacher2)
+            console.log(teacher3)
+            console.log(teacher4)
+            console.log(teacher5)
+        }
+    }
+}
+</script>
+
+<input type = "text" id="username" placeholder = "Username">
+<button onclick="loadUser()">Load User</button>
+
+<tb>
+
+</tb>
