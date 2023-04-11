@@ -4,9 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Classes</title>
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
-<body>
-    
+<body class = "body" >
+    <div id="login" style="opacity:0;pointer-events: all;">
+        <img src="./assets/svg/loginbox.svg" alt="loginbox" class = "loginbox" width="600" height="729" style="position:absolute;left:660px;top:175px;">
+        <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:427px;">
+        <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:567px;">
+        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:393px;">
+        <img src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:533px;">
+        <input type="text" class = "username" placeholder="Type your username" style="position:absolute;left:753px;top:393px;">
+        <input type="text" class = "username" placeholder="Type your username" style="position:absolute;left:753px;top:533px;">
+        <img src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:644px;">
+        <div id="gotosignup" class="using" style="position:absolute;left:880px;top:763px;opacity:0.75;">Or sign up using</div>
+        <div id="gotosignup" class="using" style="position:absolute;left:919px;top:807px;" onclick="switchPage('login','signup')">SIGN UP</div>
+    </div>
+    <div id="signup" style="opacity:1;pointer-events: none;">
+        <img src="./assets/svg/signupbox.svg" alt="loginbox" class = "loginbox" width="600" height="885" style="position:absolute;left:660px;top:97px;">
+        <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:362px;">
+        <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:502px;">
+        <img src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:643px;">
+        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:328px;">
+        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:469px;">
+        <img src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:609px;">
+        <input type="text" class = "username" placeholder="Type your full name" style="position:absolute;left:753px;top:328px;">
+        <input type="text" class = "username" placeholder="Type your username" style="position:absolute;left:753px;top:469px;">
+        <input type="text" class = "username" placeholder="Type your username" style="position:absolute;left:753px;top:609px;">
+        <img src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:644px;">
+        <div id="gotologin" class="using" style="position:absolute;left:880px;top:763px;opacity:0.75;">Or log in using</div>
+        <div id="gotologin" class="using" style="position:absolute;left:919px;top:807px;" onclick="switchPage('signup','login')">LOG IN</div>
+    </div>
 </body>
+<script>
+    function switchPage(current, page) {
+        document.getElementById(current).style.opacity = "0";
+        document.getElementById(current).style.pointerEvents = "none";
+        document.getElementById(page).style.opacity = "1";
+        document.getElementById(page).style.pointerEvents = "all";
+    }
+</script>
 </html>

@@ -1,0 +1,31 @@
+@font-face {
+    font-family: "Inter";
+    src: url("./Inter/Inter-Regular.ttf");
+}
+@font-face {
+    font-family: "Inter-Bold";
+    src: url("./Inter/Inter-Bold.ttf");
+}
+
+.body {
+    background-image: url("./svg/background.svg");
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    background-size: cover;
+    cursor: default;
+    font-family: Inter-Bold;
+}
+
+.using {
+    font-family: Inter-Bold;
+    font-size: 20px;
+}
+
+input[type="text"] {
+    font-family: Inter-Bold;
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    outline: none;
+    opacity: 0.5;
+}
