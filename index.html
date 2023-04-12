@@ -7,7 +7,7 @@
     <title>Classes</title>
     <link rel="stylesheet" href="./assets/style.css">
 </head>
-<body class = "body" onload="init();resize()">
+<body class = "body" onload="init();">
     <div id="login" style="opacity:0;pointer-events: none;">
         <img    id="loginbox"               src="./assets/svg/loginbox.svg" alt="loginbox" class = "loginbox" width="600" height="729" style="position:absolute;left:660px;top:175px;">
         
@@ -104,14 +104,14 @@
         
         <img    id="mainUpdateButton"       src="./assets/svg/updateschedulebutton.svg" alt="unicon" class = "unicon" width="448" height="50" style="position:absolute;left:736px;top:558px;">
 
-        <img    id="mainClassmate1Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:643px;">
-        <div    id="mainClassmate1"         class="maintext" style="position:absolute;left:315px;top:643px;">Classmate 1</div>
+        <img    id="mainClassmateA1Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:643px;">
+        <div    id="mainClassmateA1"         class="maintext" style="position:absolute;left:315px;top:643px;">Classmate A1</div>
 
-        <img    id="mainClassmate2Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:643px;">
-        <div    id="mainClassmate2"         class="maintext" style="position:absolute;left:608px;top:643px;">Classmate 2</div>
+        <img    id="mainClassmateB1Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:643px;">
+        <div    id="mainClassmateB1"         class="maintext" style="position:absolute;left:608px;top:643px;">Classmate B1</div>
 
-        <img    id="mainClassmate2Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:703px;">
-        <div    id="mainClassmate2"         class="maintext" style="position:absolute;left:608px;top:703px;">Classmate 2</div>
+        <img    id="mainClassmateB2Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:703px;">
+        <div    id="mainClassmateB2"         class="maintext" style="position:absolute;left:608px;top:703px;">Classmate B2</div>
 
         <img    id="mainSettingsButton"     src="./assets/svg/settinglogo.svg" alt="unicon" class = "unicon" width="30" height="35" style="position:absolute;left:1742px;top:907px;" onclick="switchPage('main','settings')">
     </div>
@@ -143,8 +143,8 @@
     function init() {
         // if user logged in, go directly to classes
         // if user not logged in go to login page
-        document.getElementById("settings").style.opacity = "1";
-        document.getElementById("settings").style.pointerEvents = "all";
+        document.getElementById("main").style.opacity = "1";
+        document.getElementById("main").style.pointerEvents = "all";
     }
     function verifyLogin() {
         // Send request to backend with credentials
@@ -201,6 +201,7 @@ function resize () {
 
     dynamic_TextSize("logintext", 20, size);
     dynamic_TextSize("using", 20, size);
+    dynamic_TextSize("maintext", 20, size);
 
     //login
     dynamic_imgSize("loginbox", 600, 729, 660, 175, size);
@@ -249,7 +250,80 @@ function resize () {
     dynamic_TextPositioning('goToLogin', 926, 886, size);
 
     //main
+    dynamic_imgSize("mainbox", 1704, 885, 108, 97, size);
 
+    dynamic_TextPositioning('mainPeriod1Text', 274, 296, size);
+    dynamic_imgSize('mainPeriod1Icon', 20, 24, 284, 326, size);
+    dynamic_TextPositioning('mainPeriod1', 315, 326, size);
+    dynamic_TextSizeByID('mainPeriod1', 20, size);
+    dynamic_imgSize('mainPeriod1Underbar', 200, 7, 274, 362, size);
+
+    dynamic_TextPositioning('mainPeriod2Text', 567, 296, size);
+    dynamic_imgSize('mainPeriod2Icon', 20, 24, 577, 326, size);
+    dynamic_TextPositioning('mainPeriod2', 608, 326, size);
+    dynamic_TextSizeByID('mainPeriod2', 20, size);
+    dynamic_imgSize('mainPeriod2Underbar', 200, 7, 567, 362, size);
+
+    dynamic_TextPositioning('mainPeriod3Text', 860, 296, size);
+    dynamic_imgSize('mainPeriod3Icon', 20, 24, 870, 326, size);
+    dynamic_TextPositioning('mainPeriod3', 901, 326, size);
+    dynamic_TextSizeByID('mainPeriod3', 20, size);
+    dynamic_imgSize('mainPeriod3Underbar', 200, 7, 860, 362, size);
+
+    dynamic_TextPositioning('mainPeriod4Text', 1153, 296, size);
+    dynamic_imgSize('mainPeriod4Icon', 20, 24, 1163, 326, size);
+    dynamic_TextPositioning('mainPeriod4', 1194, 326, size);
+    dynamic_TextSizeByID('mainPeriod4', 20, size);
+    dynamic_imgSize('mainPeriod4Underbar', 200, 7, 1153, 362, size);
+
+    dynamic_TextPositioning('mainPeriod5Text', 1446, 296, size);
+    dynamic_imgSize('mainPeriod5Icon', 20, 24, 1456, 326, size);
+    dynamic_TextPositioning('mainPeriod5', 1487, 326, size);
+    dynamic_TextSizeByID('mainPeriod5', 20, size);
+    dynamic_imgSize('mainPeriod5Underbar', 200, 7, 1446, 362, size);
+
+    dynamic_TextPositioning('mainTeacher1Text', 274, 417, size);
+    dynamic_imgSize('mainTeacher1Icon', 20, 24, 284, 447, size);
+    dynamic_TextPositioning('mainTeacher1', 315, 447, size);
+    dynamic_TextSizeByID('mainTeacher1', 20, size);
+    dynamic_imgSize('mainTeacher1Underbar', 200, 7, 274, 483, size);
+
+    dynamic_TextPositioning('mainTeacher2Text', 567, 417, size);
+    dynamic_imgSize('mainTeacher2Icon', 20, 24, 577, 447, size);
+    dynamic_TextPositioning('mainTeacher2', 608, 447, size);
+    dynamic_TextSizeByID('mainTeacher2', 20, size);
+    dynamic_imgSize('mainTeacher2Underbar', 200, 7, 567, 483, size);
+
+    dynamic_TextPositioning('mainTeacher3Text', 860, 417, size);
+    dynamic_imgSize('mainTeacher3Icon', 20, 24, 870, 447, size);
+    dynamic_TextPositioning('mainTeacher3', 901, 447, size);
+    dynamic_TextSizeByID('mainTeacher3', 20, size);
+    dynamic_imgSize('mainTeacher3Underbar', 200, 7, 860, 483, size);
+
+    dynamic_TextPositioning('mainTeacher4Text', 1153, 417, size);
+    dynamic_imgSize('mainTeacher4Icon', 20, 24, 1163, 447, size);
+    dynamic_TextPositioning('mainTeacher4', 1194, 447, size);
+    dynamic_TextSizeByID('mainTeacher4', 20, size);
+    dynamic_imgSize('mainTeacher4Underbar', 200, 7, 1153, 483, size);
+
+    dynamic_TextPositioning('mainTeacher5Text', 1446, 417, size);
+    dynamic_imgSize('mainTeacher5Icon', 20, 24, 1456, 447, size);
+    dynamic_TextPositioning('mainTeacher5', 1487, 447, size);
+    dynamic_TextSizeByID('mainTeacher5', 20, size);
+    dynamic_imgSize('mainTeacher5Underbar', 200, 7, 1446, 483, size);
+    
+    dynamic_imgSize('mainUpdateButton', 448, 50, 736, 558, size);
+
+    dynamic_imgSize('mainClassmateA1Icon', 20, 24, 284, 643, size);
+    dynamic_TextPositioning('mainClassmateA1', 315, 643, size);
+
+    dynamic_imgSize('mainClassmateB1Icon', 20, 24, 577, 643, size);
+    dynamic_TextPositioning('mainClassmateB1', 608, 643, size);
+
+    dynamic_imgSize('mainClassmateB2Icon', 20, 24, 577, 703, size);
+    dynamic_TextPositioning('mainClassmateB2', 608, 703, size);
+
+    dynamic_imgSize('mainSettingsButton', 30, 35, 1742, 907, size);
 
     //settings
     dynamic_imgSize("settingbox", 600, 885, 660, 97, size);
