@@ -103,14 +103,39 @@
 
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:703px;">
         <div id="teachertext" class="maintext" style="position:absolute;left:608px;top:703px;">Classmate 2</div>
+
+        <img src="./assets/svg/settinglogo.svg" alt="unicon" class = "unicon" width="30" height="35" style="position:absolute;left:1742px;top:907px;" onclick="switchPage('main','settings')">
+    </div>
+    <div id="settings" style="opacity:0;pointer-events: none;">
+        <img    id="settingbox"              src="./assets/svg/settingbox.svg" alt="settingbox" class = "settingbox" width="600" height="885" style="position:absolute;left:660px;top:97px;">
+        
+        <div    id="settingsFullnameText"     class="deletetext" style="position:absolute;left:712px;top:298px;">Full Name</div>
+        <img    id="settingsFullnameIcon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:328px;">
+        <input  id="settingsFullname"         type="text" placeholder="Type your full name" style="position:absolute;left:753px;top:328px;">
+        <img    id="settingsFullnameUnderbar" src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:362px;">
+        
+        <div    id="settingsUsernameText"     class="deletetext" style="position:absolute;left:712px;top:439px;">Username</div>
+        <img    id="settingsUsernameIcon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:469px;">
+        <input  id="settingsUsername"         type="text" placeholder="Type your username" style="position:absolute;left:753px;top:469px;">
+        <img    id="settingsUsernameUnderbar" src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:502px;">
+        
+        <div    id="settingsPasswordText"     class="deletetext" style="position:absolute;left:712px;top:579px;">Reset Password</div>
+        <img    id="settingsPasswordIcon"     src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:609px;">
+        <input  id="settingsPassword"       type="password" placeholder="Type your new password" style="position:absolute;left:753px;top:609px;">
+        <img    id="settingsPassordUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:643px;">
+        
+        <img    id="settingsButton"           src="./assets/svg/settingbutton.svg" alt="settingbutton" class = "settingbutton" width="448" height="50" style="position:absolute;left:736px;top:720px;" onclick="switchPage('settings','main')">
+        
+        <div    id="deleteText"          class="using" style="position:absolute;left:863px;top:842px;opacity:0.75;">Delete your account</div>
+        <div    id="delete"              class="using" style="position:absolute;left:922px;top:886px;color:#891522" onclick="//delete">DELETE</div>
     </div>
 </body>
 <script>
     function init() {
         // if user logged in, go directly to classes
         // if user not logged in go to login page
-        document.getElementById("main").style.opacity = "1";
-        document.getElementById("main").style.pointerEvents = "all";
+        document.getElementById("login").style.opacity = "1";
+        document.getElementById("login").style.pointerEvents = "all";
     }
     function verifyLogin() {
         // Send request to backend with credentials
