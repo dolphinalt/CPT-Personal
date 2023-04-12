@@ -10,7 +10,6 @@
 .body {
     background-image: url("./svg/background.svg");
     background-repeat: no-repeat;
-    /* background-position: center; */
     background-size: cover;
     cursor: default;
     font-family: Inter-Bold;

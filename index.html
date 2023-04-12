@@ -7,7 +7,7 @@
     <title>Classes</title>
     <link rel="stylesheet" href="./assets/style.css">
 </head>
-<body class = "body" onload="init()">
+<body class = "body" onload="init();resize()">
     <div id="login" style="opacity:0;pointer-events: none;">
         <img    id="loginbox"               src="./assets/svg/loginbox.svg" alt="loginbox" class = "loginbox" width="600" height="729" style="position:absolute;left:660px;top:175px;">
         
@@ -18,7 +18,7 @@
 
         <div    id="loginPasswordText"      class="logintext" style="position:absolute;left:712px;top:503px;">Password</div>
         <img    id="loginPasswordIcon"      src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:533px;">
-        <input  id = "loginPassword"        type="password" placeholder="Type your username" style="position:absolute;left:753px;top:533px;">
+        <input  id = "loginPassword"        type="password" placeholder="Type your password" style="position:absolute;left:753px;top:533px;">
         <img    id="loginPasswordUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:567px;">
 
         <img    id="loginButton"            src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:644px;" onclick="verifyLogin()">
@@ -44,10 +44,10 @@
         <input  id = "signupPassword"       type="password" placeholder="Type your username" style="position:absolute;left:753px;top:609px;">
         <img    id="signupPassordUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:643px;">
         
-        <img    id="signupButton"           src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:720px;">
+        <img    id="signupButton"           src="./assets/svg/loginbutton.svg" alt="signupButton" class = "signupButton" width="448" height="50" style="position:absolute;left:736px;top:720px;">
         
-        <div    id="goToLoginText"          class="using" style="position:absolute;left:880px;top:842px;opacity:0.75;">Or log in using</div>
-        <div    id="goToLogin"              class="using" style="position:absolute;left:919px;top:886px;" onclick="switchPage('signup','login')">LOG IN</div>
+        <div    id="goToLoginText"          class="using" style="position:absolute;left:890px;top:842px;opacity:0.75;">Or log in using</div>
+        <div    id="goToLogin"              class="using" style="position:absolute;left:926px;top:886px;" onclick="switchPage('signup','login')">LOG IN</div>
     </div>
     <div id="main" style="opacity:0;pointer-events: none;">
         <img src="./assets/svg/schedulebox.svg" alt="schedulebox" class = "signupbox" width="1704" height="885" style="position:absolute;left:108px;top:97px;">
@@ -109,17 +109,17 @@
     <div id="settings" style="opacity:0;pointer-events: none;">
         <img    id="settingbox"              src="./assets/svg/settingbox.svg" alt="settingbox" class = "settingbox" width="600" height="885" style="position:absolute;left:660px;top:97px;">
         
-        <div    id="settingsFullnameText"     class="deletetext" style="position:absolute;left:712px;top:298px;">Full Name</div>
+        <div    id="settingsFullnameText"     class="logintext" style="position:absolute;left:712px;top:298px;">Full Name</div>
         <img    id="settingsFullnameIcon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:328px;">
         <input  id="settingsFullname"         type="text" placeholder="Type your full name" style="position:absolute;left:753px;top:328px;">
         <img    id="settingsFullnameUnderbar" src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:362px;">
         
-        <div    id="settingsUsernameText"     class="deletetext" style="position:absolute;left:712px;top:439px;">Username</div>
+        <div    id="settingsUsernameText"     class="logintext" style="position:absolute;left:712px;top:439px;">Username</div>
         <img    id="settingsUsernameIcon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:469px;">
         <input  id="settingsUsername"         type="text" placeholder="Type your username" style="position:absolute;left:753px;top:469px;">
         <img    id="settingsUsernameUnderbar" src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:502px;">
         
-        <div    id="settingsPasswordText"     class="deletetext" style="position:absolute;left:712px;top:579px;">Reset Password</div>
+        <div    id="settingsPasswordText"     class="logintext" style="position:absolute;left:712px;top:579px;">Reset Password</div>
         <img    id="settingsPasswordIcon"     src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:609px;">
         <input  id="settingsPassword"       type="password" placeholder="Type your new password" style="position:absolute;left:753px;top:609px;">
         <img    id="settingsPassordUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:643px;">
@@ -134,8 +134,8 @@
     function init() {
         // if user logged in, go directly to classes
         // if user not logged in go to login page
-        document.getElementById("login").style.opacity = "1";
-        document.getElementById("login").style.pointerEvents = "all";
+        document.getElementById("settings").style.opacity = "1";
+        document.getElementById("settings").style.pointerEvents = "all";
     }
     function verifyLogin() {
         // Send request to backend with credentials
@@ -152,5 +152,122 @@
         document.getElementById(page).style.opacity = "1";
         document.getElementById(page).style.pointerEvents = "all";
     }
+</script>
+<script>
+function dynamic_TextPositioning(idName, origionalLeft, origionalTop, size) {
+    var element = document.getElementById(idName);
+    var element_Top = size * origionalTop;
+    element.style.top = element_Top + "px";
+    var element_Left = size * origionalLeft;
+    element.style.left = element_Left + "px";
+}
+function dynamic_TextSize(className, origionalSize, size) {
+    var element_Font = size * origionalSize;
+    var elements = document.getElementsByClassName(className);
+    for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        element.style.fontSize = element_Font + "px";
+    }
+}
+function dynamic_TextSizeByID(idName, origionalSize, size) {
+    var element_Font = size * origionalSize;
+    var element = document.getElementById(idName);
+    element.style.fontSize = element_Font + "px";
+}
+function dynamic_imgSize(idName, origionalWidth, origionalHeight, origionalLeft, origionalTop, size) {
+    var element = document.getElementById(idName);
+    var element_Height = size * origionalHeight;
+    element.style.height = element_Height + "px";
+    var element_Width = size * origionalWidth;
+    element.style.width = element_Width + "px";
+    var element_Top = size * origionalTop;
+    element.style.top = element_Top + "px";
+    var element_Left = size * origionalLeft;
+    element.style.left = element_Left + "px";
+}
+window.onresize = resize;
+function resize () {
+    var current = window.innerWidth;
+    var size = window.innerWidth/1920;
+
+    dynamic_TextSize("logintext", 20, size);
+    dynamic_TextSize("using", 20, size);
+
+    //login
+    dynamic_imgSize("loginbox", 600, 729, 660, 175, size);
+
+    dynamic_TextPositioning('loginUsernameText', 712, 363, size);
+    dynamic_imgSize('loginUsernameIcon', 20, 24, 722, 393, size);
+    dynamic_TextPositioning('loginUsername', 753, 393, size);
+    dynamic_TextSizeByID('loginUsername', 20, size);
+    dynamic_imgSize('loginUsernameUnderbar', 496, 7, 712, 427, size);
+
+    dynamic_TextPositioning('loginPasswordText', 712, 503, size);
+    dynamic_imgSize('loginPasswordIcon', 20, 24, 722, 533, size);
+    dynamic_TextPositioning('loginPassword', 753, 533, size);
+    dynamic_TextSizeByID('loginPassword', 20, size);
+    dynamic_imgSize('loginPasswordUnderbar', 496, 7, 712, 567, size);
+
+    dynamic_imgSize('loginButton', 448, 50, 736, 644, size);
+    
+    dynamic_TextPositioning('goToSignupText', 880, 763, size);
+    dynamic_TextPositioning('goToSignUp', 919, 807, size);
+
+    //signup
+    dynamic_imgSize("signupbox", 600, 885, 660, 97, size);
+
+    dynamic_TextPositioning('signupFullnameText', 712, 298, size);
+    dynamic_imgSize('signupFullnameIcon', 20, 24, 722, 328, size);
+    dynamic_TextPositioning('signupFullname', 753, 328, size);
+    dynamic_TextSizeByID('signupFullname', 20, size);
+    dynamic_imgSize('signupFullnameUnderbar', 496, 7, 712, 362, size);
+
+    dynamic_TextPositioning('signupUsernameText', 712, 439, size);
+    dynamic_imgSize('signupUsernameIcon', 20, 24, 722, 469, size);
+    dynamic_TextPositioning('signupUsername', 753, 469, size);
+    dynamic_TextSizeByID('signupUsername', 20, size);
+    dynamic_imgSize('signupUsernameUnderbar', 496, 7, 712, 502, size);
+
+    dynamic_TextPositioning('signupPasswordText', 712, 579, size);
+    dynamic_imgSize('signupPasswordIcon', 20, 24, 722, 609, size);
+    dynamic_TextPositioning('signupPassword', 753, 609, size);
+    dynamic_TextSizeByID('signupPassword', 20, size);
+    dynamic_imgSize('signupPassordUnderbar', 496, 7, 712, 643, size);
+
+    dynamic_imgSize('signupButton', 448, 50, 736, 720, size);
+
+    dynamic_TextPositioning('goToLoginText', 890, 842, size);
+    dynamic_TextPositioning('goToLogin', 926, 886, size);
+
+    //main
+    
+
+    //settings
+    dynamic_imgSize("settingbox", 600, 885, 660, 97, size);
+
+    dynamic_TextPositioning('settingsFullnameText', 712, 298, size);
+    dynamic_imgSize('settingsFullnameIcon', 20, 24, 722, 328, size);
+    dynamic_TextPositioning('settingsFullname', 753, 328, size);
+    dynamic_TextSizeByID('settingsFullname', 20, size);
+    dynamic_imgSize('settingsFullnameUnderbar', 496, 7, 712, 362, size);
+
+    dynamic_TextPositioning('settingsUsernameText', 712, 439, size);
+    dynamic_imgSize('settingsUsernameIcon', 20, 24, 722, 469, size);
+    dynamic_TextPositioning('settingsUsername', 753, 469, size);
+    dynamic_TextSizeByID('settingsUsername', 20, size);
+    dynamic_imgSize('settingsUsernameUnderbar', 496, 7, 712, 502, size);
+
+    dynamic_TextPositioning('settingsPasswordText', 712, 579, size);
+    dynamic_imgSize('settingsPasswordIcon', 20, 24, 722, 609, size);
+    dynamic_TextPositioning('settingsPassword', 753, 609, size);
+    dynamic_TextSizeByID('settingsPassword', 20, size);
+    dynamic_imgSize('settingsPassordUnderbar', 496, 7, 712, 643, size);
+
+    dynamic_imgSize('settingsButton', 448, 50, 736, 720, size);
+
+    dynamic_TextPositioning('deleteText', 863, 842, size);
+    dynamic_TextPositioning('delete', 922, 886, size);
+
+}
 </script>
 </html>
