@@ -13,5 +13,5 @@ env.bak/
 venv.bak/
 
 # instance data, databases
-volumes/sqlite.db
-instance/volumes/sqlite.db
+volumes/users.db
+instance/volumes/users.db

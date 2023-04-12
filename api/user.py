@@ -139,11 +139,22 @@ class UserAPI:
             else:
                 return {'message': f"unable to find user '{username}'"}, 210
             return user.read()
+    
+    class _Delete (Resource):
+        def post(self):
+            body = request.get_json()
+            username = body.get('username')
+            user = findUser(username)
+            if user:
+                user.delete()
+            else:
+                return {'message': f"unable to find user '{username}'"}, 210
+            return user.read()
 
     # building RESTapi endpoint
     api.add_resource(_Create, '/create') # checked and working
     api.add_resource(_Read, '/') # checked and working
     api.add_resource(_ScheduleUpdate, '/updateSchedule') # checked and working
     api.add_resource(_UserUpdate, '/userUpdate') # checked and working
-    # api.add_resource(_Delete, '/delete')
+    api.add_resource(_Delete, '/delete') # checked and working
     api.add_resource(_Authenticate, '/auth') # checked and working
