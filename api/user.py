@@ -9,10 +9,6 @@ user_api = Blueprint('user_api', __name__,
 # API docs https://flask-restful.readthedocs.io/en/latest/api.html
 api = Api(user_api)
 
-def findId(username): 
-    id = User.query.filter_by(_username=username).first().id
-    return id 
-
 def findUser(username): 
     user = User.query.filter_by(_username=username).first()
     return user
@@ -35,15 +31,42 @@ class UserAPI:
             fullname = body.get('fullname')
             if fullname is None or len(fullname) < 2:
                 return {'message': f'Fullname is missing, or is less than 2 characters'}, 210
-            # validate grade
-            grade = body.get('grade')
-            if grade is None:
-                return {'message': f'User ID is missing, or is less than 2 characters'}, 210
-            # look for password and dob
             password = body.get('password')
+            if password is None or len(password) < 2:
+                return {'message': f'Password is missing, or is less than 2 characters'}, 210
+            p1 = body.get('p1')
+            if p1 is None or len(p1) < 2:
+                return {'message': f'Period 1 is missing, or is less than 2 characters'}, 210
+            p2 = body.get('p2')
+            if p2 is None or len(p2) < 2:
+                return {'message': f'Period 1 is missing, or is less than 2 characters'}, 210
+            p3 = body.get('p3')
+            if p3 is None or len(p3) < 2:
+                return {'message': f'Period 1 is missing, or is less than 2 characters'}, 210
+            p4 = body.get('p4')
+            if p4 is None or len(p4) < 2:
+                return {'message': f'Period 1 is missing, or is less than 2 characters'}, 210
+            p5 = body.get('p5')
+            if p5 is None or len(p5) < 2:
+                return {'message': f'Period 1 is missing, or is less than 2 characters'}, 210
+            t1 = body.get('t1')
+            if t1 is None or len(t1) < 2:
+                return {'message': f'Period 1 is missing, or is less than 2 characters'}, 210
+            t2 = body.get('t2')
+            if t2 is None or len(t2) < 2:
+                return {'message': f'Period 1 is missing, or is less than 2 characters'}, 210
+            t3 = body.get('t3')
+            if t3 is None or len(t3) < 2:
+                return {'message': f'Period 1 is missing, or is less than 2 characters'}, 210
+            t4 = body.get('t4')
+            if t4 is None or len(t4) < 2:
+                return {'message': f'Period 1 is missing, or is less than 2 characters'}, 210
+            t5 = body.get('t5')
+            if t5 is None or len(t5) < 2:
+                return {'message': f'Period 1 is missing, or is less than 2 characters'}, 210
 
             ''' #1: Key code block, setup USER OBJECT '''
-            uo = User(username=username, fullname=fullname, password=password,  grade=grade)
+            uo = User(username=username, fullname=fullname, password=password, p1=p1, p2=p2, p3=p3, p4=p4, p5=p5, t1=t1, t2=t2, t3=t3, t4=t4, t5=t5)
             
             ''' Additional garbage error checking '''
             # set password if provided
@@ -114,6 +137,6 @@ class UserAPI:
     # building RESTapi endpoint
     api.add_resource(_Create, '/create')
     api.add_resource(_Read, '/')
-    api.add_resource(_UpdateSchedules, '/schedules/update')
+    api.add_resource(_UpdateSchedules, '/update')
     api.add_resource(_Schedules, '/schedules')
     api.add_resource(_Authenticate, '/auth')

@@ -19,7 +19,6 @@ class User(db.Model):
     _username = db.Column(db.Text, unique=True, nullable=False)
     _fullname = db.Column(db.Text, unique=False, nullable=False)
     _password = db.Column(db.Text, unique=False, nullable=False)
-    _grade = db.Column(db.Integer, unique=False, nullable=True)
     _p1 = db.Column(db.Text, unique=False, nullable=False)
     _t1 = db.Column(db.Text, unique=False, nullable=False)
     _p2 = db.Column(db.Text, unique=False, nullable=False)
@@ -32,7 +31,7 @@ class User(db.Model):
     _t5 = db.Column(db.Text, unique=False, nullable=False)
     
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, username, fullname, password="Password1!", grade=None, p1=None, p2=None, p3=None, p4=None, p5=None, t1=None, t2=None, t3=None, t4=None, t5=None):
+    def __init__(self, username, fullname, password="Password1!", p1=None, p2=None, p3=None, p4=None, p5=None, t1=None, t2=None, t3=None, t4=None, t5=None):
         self._username = username    # variables with self prefix become part of the object, 
         self._fullname = fullname
         self.set_password(password)
@@ -76,13 +75,6 @@ class User(db.Model):
             return True
         else:
             return False
-    
-    @property
-    def grade(self):
-        return self._grade
-    @grade.setter
-    def grade(self, grade):
-        self._grade = grade
     
     @property
     def p1(self):
@@ -156,7 +148,7 @@ class User(db.Model):
 
     # CRUD create/add a new record to the table
     # returns self or None on error
-    def create(self, username="", fullname="", password="", grade=9, p1="", p2="", p3="", p4="", p5="", t1="", t2="", t3="", t4="", t5=""):
+    def create(self, username="", fullname="", password="", p1="", p2="", p3="", p4="", p5="", t1="", t2="", t3="", t4="", t5=""):
         try:
             # creates a person object from User(db.Model) class, passes initializers
             db.session.add(self)  # add prepares to persist person object to Users table
@@ -177,11 +169,10 @@ class User(db.Model):
         return {
             "username": self.username,
             "fullname": self.fullname,
-            "grade": self.grade,
             "classes": classes
         }
 
-    def update(self, username="", fullname="", password="", grade="", p1="", p2="", p3="", p4="", p5="", t1="", t2="", t3="", t4="", t5=""):
+    def update(self, username="", fullname="", password="", p1="", p2="", p3="", p4="", p5="", t1="", t2="", t3="", t4="", t5=""):
         #only updates values with length
         if len(username) > 0:
             self.username = username
@@ -229,10 +220,10 @@ def initUsers():
         db.create_all()
 
         
-        u1 = User(username='eris29', fullname='Alexander Lu', password='CyberPatriot1!', grade=11, p1="AP English Language", p2="AP Calculus BC", p3="AP Physics C: Mechanics", p4="Court Sports", p5="AP Computer Science: Principles", t1="Cara-Lisa Jenkins", t2="Michelle Lanzi-Sheaman", t3="Ifeng Liao", t4="Dale Hanover", t5="Sean Yeung")
-        u2 = User(username='dolfin', fullname='Ethan Zhao', password='CyberPatriot2@', grade=10, p1="AP Calculus AB", p2="AP Biology", p3="Honors Humanities 2", p4="AP Chinese", p5="AP Computer Science: Principles", t1="Briana West", t2="Julia Cheskaty", t3="Jennifer Philyaw", t4="Ying Tzy Lin", t5="Sean Yeung")
-        u3 = User(username='shattered', fullname='Sophia Tang', password='CyberPatriot3#', grade=10, p1="AP Chemistry", p2="Intro to Finance", p3="AP World History", p4="AP Calculus AB", p5="AP Computer Science: Principles", t1="Kenneth Ozuna", t2="Amanda Nelson", t3="Megan Volger", t4="Cherie Nydam", t5="Sean Yeung")
-        u4 = User(username='calicocat', fullname='Lily Wu', password='CyberPatriot4$', grade=11, p1="AP English Language", p2="AP Computer Science A", p3="AP US History", p4="AP Statistics", p5="AP Computer Science: Principles", t1="Cara-Lisa Jenkins", t2="John Mortensen", t3="Thomas Swanson", t4="Michelle Derksen", t5="Sean Yeung")
+        u1 = User(username='eris29', fullname='Alexander Lu', password='CyberPatriot1!', p1="AP English Language", p2="AP Calculus BC", p3="AP Physics C: Mechanics", p4="Court Sports", p5="AP Computer Science: Principles", t1="Cara-Lisa Jenkins", t2="Michelle Lanzi-Sheaman", t3="Ifeng Liao", t4="Dale Hanover", t5="Sean Yeung")
+        u2 = User(username='dolfin', fullname='Ethan Zhao', password='CyberPatriot2@', p1="AP Calculus AB", p2="AP Biology", p3="Honors Humanities 2", p4="AP Chinese", p5="AP Computer Science: Principles", t1="Briana West", t2="Julia Cheskaty", t3="Jennifer Philyaw", t4="Ying Tzy Lin", t5="Sean Yeung")
+        u3 = User(username='shattered', fullname='Sophia Tang', password='CyberPatriot3#', p1="AP Chemistry", p2="Intro to Finance", p3="AP World History", p4="AP Calculus AB", p5="AP Computer Science: Principles", t1="Kenneth Ozuna", t2="Amanda Nelson", t3="Megan Volger", t4="Cherie Nydam", t5="Sean Yeung")
+        u4 = User(username='calicocat', fullname='Lily Wu', password='CyberPatriot4$', p1="AP English Language", p2="AP Computer Science A", p3="AP US History", p4="AP Statistics", p5="AP Computer Science: Principles", t1="Cara-Lisa Jenkins", t2="John Mortensen", t3="Thomas Swanson", t4="Michelle Derksen", t5="Sean Yeung")
 
         users = [u1, u2, u3, u4]
         for user in users:
