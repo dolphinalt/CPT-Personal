@@ -51,48 +51,57 @@
     </div>
     <div id="main" style="opacity:0;pointer-events: none;">
         <img src="./assets/svg/schedulebox.svg" alt="schedulebox" class = "signupbox" width="1704" height="885" style="position:absolute;left:108px;top:97px;">
-        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:274px;top:362px;">
-        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:567px;top:362px;">
-        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:860px;top:362px;">
-        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:1153px;top:362px;">
-        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:1446px;top:362px;">
-        <input type="text" id = "period1" placeholder="Period 1" style="position:absolute;left:315px;top:326px;">
-        <input type="text" id = "period2" placeholder="Period 2" style="position:absolute;left:608px;top:326px;">
-        <input type="text" id = "period3" placeholder="Period 3" style="position:absolute;left:901px;top:326px;">
-        <input type="text" id = "period4" placeholder="Period 4" style="position:absolute;left:1194px;top:326px;">
-        <input type="text" id = "period5" placeholder="Period 5" style="position:absolute;left:1487px;top:326px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:326px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:326px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:870px;top:326px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1163px;top:326px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1456px;top:326px;">
-        <div id="classtext" class="maintext" style="position:absolute;left:274px;top:296px;">Period 1</div>
-        <div id="classtext" class="maintext" style="position:absolute;left:567px;top:296px;">Period 2</div>
-        <div id="classtext" class="maintext" style="position:absolute;left:860px;top:296px;">Period 3</div>
-        <div id="classtext" class="maintext" style="position:absolute;left:1153px;top:296px;">Period 4</div>
-        <div id="classtext" class="maintext" style="position:absolute;left:1446px;top:296px;">Period 5</div>
+        
+        <div    id="mainPeriod1Text"        class="maintext" style="position:absolute;left:274px;top:296px;">Period 1</div>
+        <img    id="mainPeriod1Icon"        src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:326px;">
+        <input  id="mainPeriod1"            type="text" placeholder="Period 1" style="position:absolute;left:315px;top:326px;">
+        <img    id="mainPeriod1Underbar"    src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:274px;top:362px;">
+        
+        <div    id="mainPeriod2Text"        class="maintext" style="position:absolute;left:567px;top:296px;">Period 2</div>
+        <img    id="mainPeriod2Icon"        src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:326px;">
+        <input  id="mainPeriod2"            type="text" placeholder="Period 2" style="position:absolute;left:608px;top:326px;">
+        <img    id="mainPeriod2Underbar"    src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:567px;top:362px;">
+        
+        <div    id="mainPeriod3Text"        class="maintext" style="position:absolute;left:860px;top:296px;">Period 3</div>
+        <img    id="mainPeriod3Icon"        src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:870px;top:326px;">
+        <input  id="mainPeriod3"            type="text" placeholder="Period 3" style="position:absolute;left:901px;top:326px;">
+        <img    id="mainPeriod3Underbar"    src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:860px;top:362px;">
+        
+        <div    id="mainPeriod4Text"        class="maintext" style="position:absolute;left:1153px;top:296px;">Period 4</div>
+        <img    id="mainPeriod4Icon"        src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1163px;top:326px;">
+        <input  id="mainPeriod4"            type="text" placeholder="Period 4" style="position:absolute;left:1194px;top:326px;">
+        <img    id="mainPeriod4Underbar"    src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:1153px;top:362px;">
+        
+        <div    id="mainPeriod5Text"        class="maintext" style="position:absolute;left:1446px;top:296px;">Period 5</div>
+        <img    id="mainPeriod5Icon"        src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1456px;top:326px;">
+        <input  id="mainPeriod5"            type="text" id = "period5" placeholder="Period 5" style="position:absolute;left:1487px;top:326px;">
+        <img    id="mainPeriod5Underbar"    src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:1446px;top:362px;">
 
-        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:274px;top:483px;">
-        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:567px;top:483px;">
-        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:860px;top:483px;">
-        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:1153px;top:483px;">
-        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:1446px;top:483px;">
-        <input type="text" id = "teacher1" placeholder="Teacher 1" style="position:absolute;left:315px;top:447px;">
-        <input type="text" id = "teacher2" placeholder="Teacher 2" style="position:absolute;left:608px;top:447px;">
-        <input type="text" id = "teacher3" placeholder="Teacher 3" style="position:absolute;left:901px;top:447px;">
-        <input type="text" id = "teacher4" placeholder="Teacher 4" style="position:absolute;left:1194px;top:447px;">
-        <input type="text" id = "teacher5" placeholder="Teacher 5" style="position:absolute;left:1487px;top:447px;">
+        <div id="teachertext"    class="maintext" style="position:absolute;left:274px;top:417px;">Teacher 1</div>
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:447px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:447px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:870px;top:447px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1163px;top:447px;">
-        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1456px;top:447px;">
-        <div id="teachertext" class="maintext" style="position:absolute;left:274px;top:417px;">Teacher 1</div>
+        <input type="text" id = "teacher1" placeholder="Teacher 1" style="position:absolute;left:315px;top:447px;">
+        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:274px;top:483px;">
+        
         <div id="teachertext" class="maintext" style="position:absolute;left:567px;top:417px;">Teacher 2</div>
+        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:447px;">
+        <input type="text" id = "teacher2" placeholder="Teacher 2" style="position:absolute;left:608px;top:447px;">
+        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:567px;top:483px;">
+        
         <div id="teachertext" class="maintext" style="position:absolute;left:860px;top:417px;">Teacher 3</div>
+        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:870px;top:447px;">
+        <input type="text" id = "teacher3" placeholder="Teacher 3" style="position:absolute;left:901px;top:447px;">
+        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:860px;top:483px;">
+        
         <div id="teachertext" class="maintext" style="position:absolute;left:1153px;top:417px;">Teacher 4</div>
+        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1163px;top:447px;">
+        <input type="text" id = "teacher4" placeholder="Teacher 4" style="position:absolute;left:1194px;top:447px;">
+        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:1153px;top:483px;">
+        
         <div id="teachertext" class="maintext" style="position:absolute;left:1446px;top:417px;">Teacher 5</div>
-
+        <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1456px;top:447px;">
+        <input type="text" id = "teacher5" placeholder="Teacher 5" style="position:absolute;left:1487px;top:447px;">
+        <img src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:1446px;top:483px;">
+        
         <img id="updatebutton" src="./assets/svg/updateschedulebutton.svg" alt="unicon" class = "unicon" width="448" height="50" style="position:absolute;left:736px;top:558px;">
 
         <img src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:643px;">
@@ -240,7 +249,7 @@ function resize () {
     dynamic_TextPositioning('goToLogin', 926, 886, size);
 
     //main
-    
+
 
     //settings
     dynamic_imgSize("settingbox", 600, 885, 660, 97, size);
