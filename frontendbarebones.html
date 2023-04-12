@@ -1,47 +1,71 @@
 <script>
-function loadUser() {
+function compare() {
     users = [{"fullname": "Alexander Lu","grade": null,"p1": "AP English Language;Cara-Lisa Jenkins","p2": "AP Calculus BC;Michelle Lanzi-Sheaman","p3": "AP Physics C: Mechanics;Ifeng Liao","p4": "Court Sports;Dale Hanover","p5": "AP Computer Science: Principles;Sean Yeung","username": "eris29"},{ "fullname": "Ethan Zhao","grade": null,"p1": "AP Calculus AB;Briana West","p2": "AP Biology;Julia Cheskaty","p3": "Honors Humanities 2;Jennifer Philyaw","p4": "AP Chinese;Ying Tzy Lin","p5": "AP Computer Science: Principles;Sean Yeung","username": "dolfin"},{"fullname": "Sophia Tang","grade": null,"p1": "AP Chemistry;Kenneth Ozuna","p2": "Intro to Finance;Amanda Nelson","p3": "AP World History;Megan Volger","p4": "AP Calculus AB;Cherie Nydam","p5": "AP Computer Science: Principles;Sean Yeung","username": "shattered"},{"fullname": "Lily Wu","grade": null,"p1": "AP English Language;Cara-Lisa Jenkins","p2": "AP Computer Science A;John Mortensen","p3": "AP US History;Thomas Swanson","p4": "AP Statistics;Michelle Derksen","p5": "AP Computer Science: Principles;Sean Yeung","username": "calicocat"}]
-    name = document.getElementById("username").value;
-    console.log(name)
+    you = document.getElementById("you").value;
+    other = document.getElementById("other").value;
+    console.log(you)
+    console.log(other)
     for (i in users) {
-        if (users[i]["username"] == name) {
-            fullname = users[i]["fullname"]
-            p1 = (users[i]["p1"]).split(";");
-            p2 = (users[i]["p2"]).split(";");
-            p3 = (users[i]["p3"]).split(";");
-            p4 = (users[i]["p4"]).split(";");
-            p5 = (users[i]["p5"]).split(";");
-
-            class1 = p1[0];
-            class2 = p2[0];
-            class3 = p3[0];
-            class4 = p4[0];
-            class5 = p5[0];
-            teacher1 = p1[1];
-            teacher2 = p2[1];
-            teacher3 = p3[1];
-            teacher4 = p4[1];
-            teacher5 = p5[1];
-
-            console.log(fullname)
-            console.log(class1)
-            console.log(class2)
-            console.log(class3)
-            console.log(class4)
-            console.log(class5)
-            console.log(teacher1)
-            console.log(teacher2)
-            console.log(teacher3)
-            console.log(teacher4)
-            console.log(teacher5)
+        if (users[i]["username"] == you) {
+            fullnameyou = users[i]["fullname"]
+            console.log(fullnameyou)
+            p1you = users[i]["p1"];
+            p2you = users[i]["p2"];
+            p3you = users[i]["p3"];
+            p4you = users[i]["p4"];
+            p5you = users[i]["p5"];
+            // p1you = (users[i]["p1"]).split(";");
+            // p2you = (users[i]["p2"]).split(";");
+            // p3you = (users[i]["p3"]).split(";");
+            // p4you = (users[i]["p4"]).split(";");
+            // p5you = (users[i]["p5"]).split(";");
+            // class1 = p1[0];
+            // class2 = p2[0];
+            // class3 = p3[0];
+            // class4 = p4[0];
+            // class5 = p5[0];
+            // teacher1 = p1[1];
+            // teacher2 = p2[1];
+            // teacher3 = p3[1];
+            // teacher4 = p4[1];
+            // teacher5 = p5[1];
         }
+        if (users[i]["username"] == other) {
+            fullnameother = users[i]["fullname"]
+            console.log(fullnameother)
+            p1other = users[i]["p1"];
+            p2other = users[i]["p2"];
+            p3other = users[i]["p3"];
+            p4other = users[i]["p4"];
+            p5other = users[i]["p5"];
+        }
+    }
+    if (p1you == p1other) {
+        period = p1you.split(";");
+        console.log("You share period 1 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
+    }
+    if (p2you == p2other) {
+        period = p2you.split(";");
+        console.log("You share period 2 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
+    }
+    if (p3you == p3other) {
+        period = p3you.split(";");
+        console.log("You share period 3 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
+    }
+    if (p4you == p4other) {
+        period = p4you.split(";");
+        console.log("You share period 4 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
+    }
+    if (p5you == p5other) {
+        period = p5you.split(";");
+        console.log("You share period 5 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
     }
 }
 </script>
 
-<input type = "text" id="username" placeholder = "Username">
-<button onclick="loadUser()">Load User</button>
+<input type = "text" id="you" placeholder = "YOU">
+<input type = "text" id="other" placeholder = "OTHER">
+<button onclick="compare()">Load User</button>
 
 <tb>
-
 </tb>
