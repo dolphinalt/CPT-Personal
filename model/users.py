@@ -200,11 +200,7 @@ class User(db.Model):
             self.p5 = p5
         if len(t5) > 0:
             self.t5 = t5
-        if len(p6) > 0:
-            self.p6 = p6
-        if len(t6) > 0:
-            self.t6 = t6
-        
+
         db.session.commit()
         return self
 

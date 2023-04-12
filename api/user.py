@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource # used for REST API building
 from datetime import datetime
 from model.users import User
+import base64
 
 user_api = Blueprint('user_api', __name__,
                    url_prefix='/api/users')
@@ -12,9 +13,6 @@ api = Api(user_api)
 def findUser(username): 
     user = User.query.filter_by(_username=username).first()
     return user
-
-def class_obj_by_username(username):
-    return User.query.filter_by(username=username).first()
 
 
 class UserAPI:        
@@ -98,24 +96,33 @@ class UserAPI:
                 return {'message': f'Invalid username'}, 210
             if len(password) < 1:
                 return {'message': f'Empty Password'}, 210
-
             user = findUser(username)
-            id = findId(username)
+            print(user)
             if user.is_password(password):
-                return username + ":" + str(id)
+                pwbytes=password.encode("ascii")
+                b64pw_bytes=base64.b64encode(pwbytes)
+                unique=str(b64pw_bytes)[3:11]
+                return username + ":" + unique
             return None
     
-    class _Schedules (Resource):
-        def get(self):
-            users = Users.query.all()
-            json_ready = [user.read() for user in users]
-            return jsonify(json_ready)
+    class _UserUpdate (Resource):
+        def post(self):
+            body = request.get_json()
+            usernameOld = body.get('usernameOld')
+            username = body.get('username')
+            fullname = body.get('fullname')
+            password = body.get('password')
+            user = findUser(usernameOld)
+            print(user)
+            if user:
+                user.update(username=username, fullname=fullname, password=password)
+                return jsonify(user.read())
+            return {'message': f'Processed {username}, either a format error or duplicate'}, 210
 
-    class _UpdateSchedules(Resource):
+    class _ScheduleUpdate(Resource):
         def post(self):
             body = request.get_json()
             username = body.get('username')
-            id = findId(username)
             p1 = body.get('p1')
             p2 = body.get('p2')
             p3 = body.get('p3')
@@ -126,8 +133,7 @@ class UserAPI:
             t3 = body.get('t3')
             t4 = body.get('t4')
             t5 = body.get('t5')
-            user = class_obj_by_username(username)
-            print(user)
+            user = findUser(username)
             if user:
                 user.update(p1=p1, p2=p2, p3=p3, p4=p4, p5=p5, t1=t1, t2=t2, t3=t3, t4=t4, t5=t5)
             else:
@@ -135,8 +141,9 @@ class UserAPI:
             return user.read()
 
     # building RESTapi endpoint
-    api.add_resource(_Create, '/create')
-    api.add_resource(_Read, '/')
-    api.add_resource(_UpdateSchedules, '/update')
-    api.add_resource(_Schedules, '/schedules')
-    api.add_resource(_Authenticate, '/auth')
+    api.add_resource(_Create, '/create') # checked and working
+    api.add_resource(_Read, '/') # checked and working
+    api.add_resource(_ScheduleUpdate, '/updateSchedule') # checked and working
+    api.add_resource(_UserUpdate, '/userUpdate') # checked and working
+    # api.add_resource(_Delete, '/delete')
+    api.add_resource(_Authenticate, '/auth') # checked and working
