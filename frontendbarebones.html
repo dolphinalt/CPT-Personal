@@ -71,45 +71,37 @@ function compare() {
         // valid response will have json data
         response.json().then(data => {
             you = document.getElementById("you").value;
-            other = document.getElementById("other").value;
             for (i in data) {
                 if (data[i]["username"] == you) {
-                    fullnameyou = data[i]["fullname"]
-                    p1you = data[i]["classes"][0];
-                    p2you = data[i]["classes"][1];
-                    p3you = data[i]["classes"][2];
-                    p4you = data[i]["classes"][3];
-                    p5you = data[i]["classes"][4];
-                }
-                if (data[i]["username"] == other) {
-                    fullnameother = data[i]["fullname"]
-                    p1other = data[i]["classes"][0];
-                    p2other = data[i]["classes"][1];
-                    p3other = data[i]["classes"][2];
-                    p4other = data[i]["classes"][3];
-                    p5other = data[i]["classes"][4];
+                    yourIDX=i;
                 }
             }
-            if (p1you == p1other) {
-                period = p1you.split(";");
-                console.log("You share period 1 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
+            for (i in data) {
+                if (data[i]["username"] != you) {
+                    console.log(data[i]["username"])
+                    if (data[yourIDX]["classes"][0] == data[i]["classes"][0]) {
+                        console.log("You share period 1 "+  "with " + data[i]["fullname"] + "!")
+                    }
+                    if (data[yourIDX]["classes"][1] == data[i]["classes"][1]) {
+                        console.log("You share period 2 " + "with " + data[i]["fullname"] + "!")
+                    }
+                    if (data[yourIDX]["classes"][2] == data[i]["classes"][2]) {
+                        console.log("You share period 3 " + "with " + data[i]["fullname"] + "!")
+                    }
+                    if (data[yourIDX]["classes"][3] == data[i]["classes"][3]) {
+                        console.log("You share period 4 " + "with " + data[i]["fullname"] + "!")
+                    }
+                    if (data[yourIDX]["classes"][4] == data[i]["classes"][4]) {
+                        console.log("You share period 5 " + "with " + data[i]["fullname"] + "!")
+                    }
+                }
             }
-            if (p2you == p2other) {
-                period = p2you.split(";");
-                console.log("You share period 2 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
-            }
-            if (p3you == p3other) {
-                period = p3you.split(";");
-                console.log("You share period 3 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
-            }
-            if (p4you == p4other) {
-                period = p4you.split(";");
-                console.log("You share period 4 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
-            }
-            if (p5you == p5other) {
-                period = p5you.split(";");
-                console.log("You share period 5 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
-            }
+            fullnameother = data[i]["fullname"]
+            p1other = data[i]["classes"][0];
+            p2other = data[i]["classes"][1];
+            p3other = data[i]["classes"][2];
+            p4other = data[i]["classes"][3];
+            p5other = data[i]["classes"][4];
         })
     })
     // catch fetch errors (ie ACCESS to server blocked)

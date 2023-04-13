@@ -44,7 +44,7 @@
         <input  id = "signupPassword"       type="password" placeholder="Type your username" style="position:absolute;left:753px;top:609px;">
         <img    id="signupPassordUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:643px;">
         
-        <img    id="signupButton"           src="./assets/svg/loginbutton.svg" alt="signupButton" class = "signupButton" width="448" height="50" style="position:absolute;left:736px;top:720px;">
+        <img    id="signupButton"           src="./assets/svg/loginbutton.svg" alt="signupButton" class = "signupButton" width="448" height="50" style="position:absolute;left:736px;top:720px;" onclick="createUser('signupFullname','signupUsername','signupPassword')">
         
         <div    id="goToLoginText"          class="using" style="position:absolute;left:890px;top:842px;opacity:0.75;">Or log in using</div>
         <div    id="goToLogin"              class="using" style="position:absolute;left:926px;top:886px;" onclick="switchPage('signup','login')">LOG IN</div>
@@ -102,7 +102,7 @@
         <input  id="mainTeacher5"           type="text" placeholder="Teacher 5" style="position:absolute;left:1487px;top:447px;">
         <img    id="mainTeacher5Underbar"   src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:1446px;top:483px;">
         
-        <img    id="mainUpdateButton"       src="./assets/svg/updateschedulebutton.svg" alt="unicon" class = "unicon" width="448" height="50" style="position:absolute;left:736px;top:558px;">
+        <img    id="mainUpdateButton"       src="./assets/svg/updateschedulebutton.svg" alt="unicon" class = "unicon" width="448" height="50" style="position:absolute;left:736px;top:558px;" onclick="updateSchedule('mainPeriod1','mainPeriod2','mainPeriod3','mainPeriod4','mainPeriod5','mainTeacher1','mainTeacher2','mainTeacher3','mainTeacher4','mainTeacher5')">
 
         <img    id="mainClassmateA1Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:643px;">
         <div    id="mainClassmateA1"         class="maintext" style="position:absolute;left:315px;top:643px;">Classmate A1</div>
@@ -133,37 +133,93 @@
         <input  id="settingsPassword"       type="password" placeholder="Type your new password" style="position:absolute;left:753px;top:609px;">
         <img    id="settingsPassordUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:643px;">
         
-        <img    id="settingsButton"           src="./assets/svg/settingbutton.svg" alt="settingbutton" class = "settingbutton" width="448" height="50" style="position:absolute;left:736px;top:720px;" onclick="switchPage('settings','main')">
+        <img    id="settingsButton"           src="./assets/svg/settingbutton.svg" alt="settingbutton" class = "settingbutton" width="448" height="50" style="position:absolute;left:736px;top:720px;" onclick="userUpdate('settingsFullname','settingsUsername','settingsPassword')">
         
         <div    id="deleteText"          class="using" style="position:absolute;left:863px;top:842px;opacity:0.75;">Delete your account</div>
-        <div    id="delete"              class="using" style="position:absolute;left:922px;top:886px;color:#891522" onclick="//delete">DELETE</div>
+        <div    id="delete"              class="using" style="position:absolute;left:922px;top:886px;color:#891522" onclick="deleteUser()">DELETE</div>
     </div>
 </body>
 <script> // utils
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+function init() { //NOTE VERY INSECURE LMFAOOOOO
+    if (getCookie("auth")) {
+        const read_options = {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'omit', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        };
+        // fetch the data from API
+        fetch("http://flask.ethanzhao.us/api/users/", read_options)
+            .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+                you = (getCookie("auth")).split(":")[0];
+                for (i in data) {
+                    if (data[i]["username"] == you) {
+                        console.log((data[i]["classes"][0]))
+                        p1 = (String(data[i]["classes"][0])).split(";")[0];
+                        p2 = (String(data[i]["classes"][1])).split(";")[0];
+                        p3 = (String(data[i]["classes"][2])).split(";")[0];
+                        p4 = (String(data[i]["classes"][3])).split(";")[0];
+                        p5 = (String(data[i]["classes"][4])).split(";")[0];
+
+                        t1 = (String(data[i]["classes"][0])).split(";")[1];
+                        t2 = (String(data[i]["classes"][1])).split(";")[1];
+                        t3 = (String(data[i]["classes"][2])).split(";")[1];
+                        t4 = (String(data[i]["classes"][3])).split(";")[1];
+                        t5 = (String(data[i]["classes"][4])).split(";")[1];
+                        console.log(p1)
+                        console.log(t2)
+                    }
+                }
+                document.getElementById("mainPeriod1").value = p1;
+                document.getElementById("mainPeriod2").value = p2;
+                document.getElementById("mainPeriod3").value = p3;
+                document.getElementById("mainPeriod4").value = p4;
+                document.getElementById("mainPeriod5").value = p5;
+
+                document.getElementById("mainTeacher1").value = t1;
+                document.getElementById("mainTeacher2").value = t2;
+                document.getElementById("mainTeacher3").value = t3;
+                document.getElementById("mainTeacher4").value = t4;
+                document.getElementById("mainTeacher5").value = t5;
+            })
+        })
+        // catch fetch errors (ie ACCESS to server blocked)
+        .catch(err => {
+            console.error(err);
+        });
+        switchPage('login', 'main');
+    } else {
+    document.getElementById("login").style.opacity = "1";
+    document.getElementById("login").style.pointerEvents = "all";
     }
-    function init() { //NOTE VERY INSECURE LMFAOOOOO
-        if (getCookie(auth) != "") {
-            switchPage('login', 'main');
-        } else {
-            document.getElementById("login").style.opacity = "1";
-            document.getElementById("login").style.pointerEvents = "all";
-        }
-    }
-    function switchPage(current, page) {
-        document.getElementById(current).style.opacity = "0";
-        document.getElementById(current).style.pointerEvents = "none";
-        document.getElementById(page).style.opacity = "1";
-        document.getElementById(page).style.pointerEvents = "all";
-    }
+}
+function switchPage(current, page) {
+    document.getElementById(current).style.opacity = "0";
+    document.getElementById(current).style.pointerEvents = "none";
+    document.getElementById(page).style.opacity = "1";
+    document.getElementById(page).style.pointerEvents = "all";
+}
 </script>
 
 <script>
-function auth(unameID, pwID) {
-    username = document.getElementById(unameID).value;
+function auth(unID, pwID) {
+    username = document.getElementById(unID).value;
     password = document.getElementById(pwID).value;
     const body = {
         username: username,
@@ -195,6 +251,219 @@ function auth(unameID, pwID) {
             if (data !== null) {
                 document.cookie = "auth="+data;
                 switchPage('login','main')
+            }
+            else {
+                console.log("Invalid credentials");
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
+    });
+}
+function createUser(fnid, unid, pwid) {
+    fullname = document.getElementById(fnid).value;
+    username = document.getElementById(unid).value;
+    password = document.getElementById(pwid).value;
+    const body = {
+        username: username,
+        password: password,
+        fullname: fullname,
+        p1: "placeholder",
+        p2: "placeholder",
+        p3: "placeholder",
+        p4: "placeholder",
+        p5: "placeholder",
+        t1: "placeholder",
+        t2: "placeholder",
+        t3: "placeholder",
+        t4: "placeholder",
+        t5: "placeholder"
+    };
+    const read_options = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        body: JSON.stringify(body),
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/create", read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                console.log(response)
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+            if (data !== null) {
+                console.log(data)
+                switchPage('signup','main')
+            }
+            else {
+                console.log("Invalid credentials");
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
+    });
+    auth(unid, pwid)
+}
+function userUpdate(fnID, unID, pwID) {
+    usernameOld=(getCookie("auth")).split(":")[0];
+    fullname=document.getElementById(fnID).value;
+    username=document.getElementById(unID).value;
+    password=document.getElementById(pwID).value;
+    const body = {
+        usernameOld: usernameOld,
+        username: username,
+        password: password,
+        fullname: fullname,
+    };
+    const read_options = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        body: JSON.stringify(body),
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/userUpdate", read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                console.log(response)
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+            if (data !== null) {
+                console.log(data)
+                switchPage('settings','main')
+            }
+            else {
+                console.log("Invalid credentials");
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
+    });
+    auth("newUsername", "newPassword")
+}
+function deleteUser() {
+    username=(getCookie("auth")).split(":")[0];
+    const body = {
+        username: username,
+    };
+    const read_options = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        body: JSON.stringify(body),
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/delete", read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                console.log(response)
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+            if (data !== null) {
+                console.log(data)
+                var Cookies = document.cookie.split(';');
+                for (var i = 0; i < Cookies.length; i++) {
+                   document.cookie = Cookies[i] + "=; expires="+ new Date(0).toUTCString();
+                }
+                location.reload()
+            }
+            else {
+                console.log("Invalid credentials");
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
+    });
+}
+function updateSchedule(p1ID, p2ID, p3ID, p4ID, p5ID, t1ID, t2ID, t3ID, t4ID, t5ID) {
+    username=(getCookie("auth")).split(":")[0];
+    p1=document.getElementById(p1ID).value;
+    p2=document.getElementById(p2ID).value;
+    p3=document.getElementById(p3ID).value;
+    p4=document.getElementById(p4ID).value;
+    p5=document.getElementById(p5ID).value;
+    t1=document.getElementById(t1ID).value;
+    t2=document.getElementById(t2ID).value;
+    t3=document.getElementById(t3ID).value;
+    t4=document.getElementById(t4ID).value;
+    t5=document.getElementById(t5ID).value;
+    const body = {
+        username: username,
+        p1: p1,
+        p2: p2,
+        p3: p3,
+        p4: p4,
+        p5: p5,
+        t1: t1,
+        t2: t2,
+        t3: t3,
+        t4: t4,
+        t5: t5
+    };
+    const read_options = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        body: JSON.stringify(body),
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/updateSchedule", read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                console.log(response)
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+            if (data !== null) {
+                console.log(data)
             }
             else {
                 console.log("Invalid credentials");
