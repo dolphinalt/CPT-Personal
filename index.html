@@ -21,7 +21,7 @@
         <input  id = "loginPassword"        type="password" placeholder="Type your password" style="position:absolute;left:753px;top:533px;">
         <img    id="loginPasswordUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:567px;">
 
-        <img    id="loginButton"            src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:644px;" onclick="verifyLogin()">
+        <img    id="loginButton"            src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:644px;" onclick="auth('loginUsername', 'loginPassword')">
 
         <div    id="goToSignupText"         class="using" style="position:absolute;left:880px;top:763px;opacity:0.75;">Or sign up using</div>
         <div    id="goToSignUp"             class="using" style="position:absolute;left:919px;top:807px;" onclick="switchPage('login','signup')">SIGN UP</div>
@@ -139,21 +139,19 @@
         <div    id="delete"              class="using" style="position:absolute;left:922px;top:886px;color:#891522" onclick="//delete">DELETE</div>
     </div>
 </body>
-<script>
-    function init() {
-        // if user logged in, go directly to classes
-        // if user not logged in go to login page
-        document.getElementById("login").style.opacity = "1";
-        document.getElementById("login").style.pointerEvents = "all";
+<script> // utils
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
     }
-    function verifyLogin() {
-        // Send request to backend with credentials
-        // check for response
-        // if response, log a cookie with unique string and username
-        // procede to main page
-        switchPage('login','main')
-        // if no response, display login failed
-        
+    function init() {
+        if (getCookie(auth) != "") {
+            switchPage('login', 'main');
+        } else {
+            document.getElementById("login").style.opacity = "1";
+            document.getElementById("login").style.pointerEvents = "all";
+        }
     }
     function switchPage(current, page) {
         document.getElementById(current).style.opacity = "0";
@@ -162,7 +160,55 @@
         document.getElementById(page).style.pointerEvents = "all";
     }
 </script>
+
 <script>
+function auth(unameID, pwID) {
+    username = document.getElementById(unameID).value;
+    password = document.getElementById(pwID).value;
+    const body = {
+        username: username,
+        password: password
+    };
+    const read_options = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        body: JSON.stringify(body),
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/auth", read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                console.log(response)
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+            if (data !== null) {
+                document.cookie = "auth="+data;
+                switchPage('login','main')
+            }
+            else {
+                console.log("Invalid credentials");
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
+    });
+}
+</script>
+
+<script> // resizing
 function dynamic_TextPositioning(idName, origionalLeft, origionalTop, size) {
     var element = document.getElementById(idName);
     var element_Top = size * origionalTop;
