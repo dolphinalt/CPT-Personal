@@ -145,7 +145,7 @@
         const parts = value.split(`; ${name}=`);
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
-    function init() {
+    function init() { //NOTE VERY INSECURE LMFAOOOOO
         if (getCookie(auth) != "") {
             switchPage('login', 'main');
         } else {
