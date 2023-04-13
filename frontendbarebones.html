@@ -1,71 +1,369 @@
 <script>
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function auth(unameID, pwID) {
+    username = document.getElementById(unameID).value;
+    password = document.getElementById(pwID).value;
+    const body = {
+        username: username,
+        password: password
+    };
+    const read_options = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        body: JSON.stringify(body),
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/auth", read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                console.log(response)
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+            if (data !== null) {
+                document.cookie = "auth="+data; 
+            }
+            else {
+                console.log("Invalid credentials");
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
+    });
+}
+
 function compare() {
-    users = [{"fullname": "Alexander Lu","grade": null,"p1": "AP English Language;Cara-Lisa Jenkins","p2": "AP Calculus BC;Michelle Lanzi-Sheaman","p3": "AP Physics C: Mechanics;Ifeng Liao","p4": "Court Sports;Dale Hanover","p5": "AP Computer Science: Principles;Sean Yeung","username": "eris29"},{ "fullname": "Ethan Zhao","grade": null,"p1": "AP Calculus AB;Briana West","p2": "AP Biology;Julia Cheskaty","p3": "Honors Humanities 2;Jennifer Philyaw","p4": "AP Chinese;Ying Tzy Lin","p5": "AP Computer Science: Principles;Sean Yeung","username": "dolfin"},{"fullname": "Sophia Tang","grade": null,"p1": "AP Chemistry;Kenneth Ozuna","p2": "Intro to Finance;Amanda Nelson","p3": "AP World History;Megan Volger","p4": "AP Calculus AB;Cherie Nydam","p5": "AP Computer Science: Principles;Sean Yeung","username": "shattered"},{"fullname": "Lily Wu","grade": null,"p1": "AP English Language;Cara-Lisa Jenkins","p2": "AP Computer Science A;John Mortensen","p3": "AP US History;Thomas Swanson","p4": "AP Statistics;Michelle Derksen","p5": "AP Computer Science: Principles;Sean Yeung","username": "calicocat"}]
-    you = document.getElementById("you").value;
-    other = document.getElementById("other").value;
-    console.log(you)
-    console.log(other)
-    for (i in users) {
-        if (users[i]["username"] == you) {
-            fullnameyou = users[i]["fullname"]
-            console.log(fullnameyou)
-            p1you = users[i]["p1"];
-            p2you = users[i]["p2"];
-            p3you = users[i]["p3"];
-            p4you = users[i]["p4"];
-            p5you = users[i]["p5"];
-            // p1you = (users[i]["p1"]).split(";");
-            // p2you = (users[i]["p2"]).split(";");
-            // p3you = (users[i]["p3"]).split(";");
-            // p4you = (users[i]["p4"]).split(";");
-            // p5you = (users[i]["p5"]).split(";");
-            // class1 = p1[0];
-            // class2 = p2[0];
-            // class3 = p3[0];
-            // class4 = p4[0];
-            // class5 = p5[0];
-            // teacher1 = p1[1];
-            // teacher2 = p2[1];
-            // teacher3 = p3[1];
-            // teacher4 = p4[1];
-            // teacher5 = p5[1];
+    const read_options = {
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/", read_options)
+        .then(response => {
+        // check for response errors
+        if (response.status !== 200) {
+            const errorMsg = 'Database read error: ' + response.status;
+            console.log(errorMsg);
+            return;
         }
-        if (users[i]["username"] == other) {
-            fullnameother = users[i]["fullname"]
-            console.log(fullnameother)
-            p1other = users[i]["p1"];
-            p2other = users[i]["p2"];
-            p3other = users[i]["p3"];
-            p4other = users[i]["p4"];
-            p5other = users[i]["p5"];
-        }
-    }
-    if (p1you == p1other) {
-        period = p1you.split(";");
-        console.log("You share period 1 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
-    }
-    if (p2you == p2other) {
-        period = p2you.split(";");
-        console.log("You share period 2 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
-    }
-    if (p3you == p3other) {
-        period = p3you.split(";");
-        console.log("You share period 3 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
-    }
-    if (p4you == p4other) {
-        period = p4you.split(";");
-        console.log("You share period 4 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
-    }
-    if (p5you == p5other) {
-        period = p5you.split(";");
-        console.log("You share period 5 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
-    }
+        // valid response will have json data
+        response.json().then(data => {
+            you = document.getElementById("you").value;
+            other = document.getElementById("other").value;
+            for (i in data) {
+                if (data[i]["username"] == you) {
+                    fullnameyou = data[i]["fullname"]
+                    p1you = data[i]["classes"][0];
+                    p2you = data[i]["classes"][1];
+                    p3you = data[i]["classes"][2];
+                    p4you = data[i]["classes"][3];
+                    p5you = data[i]["classes"][4];
+                }
+                if (data[i]["username"] == other) {
+                    fullnameother = data[i]["fullname"]
+                    p1other = data[i]["classes"][0];
+                    p2other = data[i]["classes"][1];
+                    p3other = data[i]["classes"][2];
+                    p4other = data[i]["classes"][3];
+                    p5other = data[i]["classes"][4];
+                }
+            }
+            if (p1you == p1other) {
+                period = p1you.split(";");
+                console.log("You share period 1 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
+            }
+            if (p2you == p2other) {
+                period = p2you.split(";");
+                console.log("You share period 2 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
+            }
+            if (p3you == p3other) {
+                period = p3you.split(";");
+                console.log("You share period 3 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
+            }
+            if (p4you == p4other) {
+                period = p4you.split(";");
+                console.log("You share period 4 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
+            }
+            if (p5you == p5other) {
+                period = p5you.split(";");
+                console.log("You share period 5 " + period[0] + " taught by " + period[1] + " with " + fullnameother + "!")
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+        console.error(err);
+    });
+}
+
+function createUser() {
+    fullname = document.getElementById("fullname").value;
+    username = document.getElementById("username").value;
+    password = document.getElementById("password").value;
+    const body = {
+        username: username,
+        password: password,
+        fullname: fullname,
+        p1: "placeholder",
+        p2: "placeholder",
+        p3: "placeholder",
+        p4: "placeholder",
+        p5: "placeholder",
+        t1: "placeholder",
+        t2: "placeholder",
+        t3: "placeholder",
+        t4: "placeholder",
+        t5: "placeholder"
+    };
+    const read_options = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        body: JSON.stringify(body),
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/create", read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                console.log(response)
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+            if (data !== null) {
+                console.log(data)
+            }
+            else {
+                console.log("Invalid credentials");
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
+    });
+    auth("username", "password")
+}
+
+function userUpdate() {
+    usernameOld=(getCookie("auth")).split(":")[0];
+    fullname=document.getElementById("newFullname").value;
+    username=document.getElementById("newUsername").value;
+    password=document.getElementById("newPassword").value;
+    const body = {
+        usernameOld: usernameOld,
+        username: username,
+        password: password,
+        fullname: fullname,
+    };
+    const read_options = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        body: JSON.stringify(body),
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/userUpdate", read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                console.log(response)
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+            if (data !== null) {
+                console.log(data)
+            }
+            else {
+                console.log("Invalid credentials");
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
+    });
+    auth("newUsername", "newPassword")
+}
+
+function updateSchedule() {
+    username=(getCookie("auth")).split(":")[0];
+    p1=document.getElementById("p1").value
+    p2=document.getElementById("p2").value
+    p3=document.getElementById("p3").value
+    p4=document.getElementById("p4").value
+    p5=document.getElementById("p5").value
+    t1=document.getElementById("t1").value
+    t2=document.getElementById("t2").value
+    t3=document.getElementById("t3").value
+    t4=document.getElementById("t4").value
+    t5=document.getElementById("t5").value
+    const body = {
+        username: username,
+        p1: p1,
+        p2: p2,
+        p3: p3,
+        p4: p4,
+        p5: p5,
+        t1: t1,
+        t2: t2,
+        t3: t3,
+        t4: t4,
+        t5: t5
+    };
+    const read_options = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        body: JSON.stringify(body),
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/updateSchedule", read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                console.log(response)
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+            if (data !== null) {
+                console.log(data)
+            }
+            else {
+                console.log("Invalid credentials");
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
+    });
+}
+
+function deleteUser() {
+    username=(getCookie("auth")).split(":")[0];
+    const body = {
+        username: username,
+    };
+    const read_options = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        body: JSON.stringify(body),
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/delete", read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                console.log(errorMsg);
+                console.log(response)
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+            if (data !== null) {
+                console.log(data)
+            }
+            else {
+                console.log("Invalid credentials");
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
+    });
 }
 </script>
+</script>
 
+<input type = "text" id="loginUsername" placeholder = "Username">
+<input type = "text" id="loginPassword" placeholder = "Password">
+<button onclick='auth("loginUsername", "loginPassword")'>Load User</button>
+<br>
+<br>
 <input type = "text" id="you" placeholder = "YOU">
 <input type = "text" id="other" placeholder = "OTHER">
 <button onclick="compare()">Load User</button>
-
-<tb>
-</tb>
+<br>
+<br>
+<input type = "text" id="fullname" placeholder = "Full Name">
+<input type = "text" id="username" placeholder = "Username">
+<input type = "text" id="password" placeholder = "Password">
+<button onclick="createUser()">Load User</button>
+<br>
+<br>
+<input type = "text" id="newFullname" placeholder = "Full Name">
+<input type = "text" id="newUsername" placeholder = "Username">
+<input type = "text" id="newPassword" placeholder = "Password">
+<button onclick="userUpdate()">Update User</button>
+<br>
+<br>
+<input type = "text" id="p1" placeholder = "p1">
+<input type = "text" id="p2" placeholder = "p2">
+<input type = "text" id="p3" placeholder = "p3">
+<input type = "text" id="p4" placeholder = "p4">
+<input type = "text" id="p5" placeholder = "p5">
+<br>
+<input type = "text" id="t1" placeholder = "t1">
+<input type = "text" id="t2" placeholder = "t2">
+<input type = "text" id="t3" placeholder = "t3">
+<input type = "text" id="t4" placeholder = "t4">
+<input type = "text" id="t5" placeholder = "t5">
+<button onclick="updateSchedule()">Update Schedule</button>
+<br>
+<br>
+<button onclick="deleteUser()">Delete User</button>
