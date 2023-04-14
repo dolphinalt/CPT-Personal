@@ -366,6 +366,18 @@ function init() { //NOTE VERY INSECURE LMFAOOOOO
     }
 }
 function switchPage(current, page) {
+    for (let i=1; i<6; i++) {
+        document.getElementById("A" + i).style.opacity = "0";
+        document.getElementById("A" + i).style.pointerEvents = "none";
+        document.getElementById("B" + i).style.opacity = "0";
+        document.getElementById("B" + i).style.pointerEvents = "none";
+        document.getElementById("C" + i).style.opacity = "0";
+        document.getElementById("C" + i).style.pointerEvents = "none";
+        document.getElementById("D" + i).style.opacity = "0";
+        document.getElementById("D" + i).style.pointerEvents = "none";
+        document.getElementById("E" + i).style.opacity = "0";
+        document.getElementById("E" + i).style.pointerEvents = "none";
+    }
     document.getElementById(current).style.opacity = "0";
     document.getElementById(current).style.pointerEvents = "none";
     document.getElementById(page).style.opacity = "1";
