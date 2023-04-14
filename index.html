@@ -514,7 +514,7 @@ function userUpdate(fnID, unID, pwID) {
     .catch(err => {
       console.error(err);
     });
-    auth("newUsername", "newPassword")
+    auth(unID, pwID)
 }
 function deleteUser() {
     username=(getCookie("auth")).split(":")[0];
