@@ -14,4 +14,4 @@ Just create an account, and enter your classes!
 
 -----
 
-> This project was made for the APCSP college board exam as my CPT (create performance task)
+> *This project was made for the APCSP college board exam as my CPT (create performance task)*
