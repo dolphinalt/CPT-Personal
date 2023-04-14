@@ -710,35 +710,35 @@ function compare() {
 </script>
 
 <script> // resizing
-function dynamic_TextPositioning(idName, origionalLeft, origionalTop, size) {
+function dynamic_TextPositioning(idName, originalLeft, originalTop, size) {
     var element = document.getElementById(idName);
-    var element_Top = size * origionalTop;
+    var element_Top = size * originalTop;
     element.style.top = element_Top + "px";
-    var element_Left = size * origionalLeft;
+    var element_Left = size * originalLeft;
     element.style.left = element_Left + "px";
 }
-function dynamic_TextSize(className, origionalSize, size) {
-    var element_Font = size * origionalSize;
+function dynamic_TextSize(className, originalSize, size) {
+    var element_Font = size * originalSize;
     var elements = document.getElementsByClassName(className);
     for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
         element.style.fontSize = element_Font + "px";
     }
 }
-function dynamic_TextSizeByID(idName, origionalSize, size) {
-    var element_Font = size * origionalSize;
+function dynamic_TextSizeByID(idName, originalSize, size) {
+    var element_Font = size * originalSize;
     var element = document.getElementById(idName);
     element.style.fontSize = element_Font + "px";
 }
-function dynamic_imgSize(idName, origionalWidth, origionalHeight, origionalLeft, origionalTop, size) {
+function dynamic_imgSize(idName, originalWidth, originalHeight, originalLeft, originalTop, size) {
     var element = document.getElementById(idName);
-    var element_Height = size * origionalHeight;
+    var element_Height = size * originalHeight;
     element.style.height = element_Height + "px";
-    var element_Width = size * origionalWidth;
+    var element_Width = size * originalWidth;
     element.style.width = element_Width + "px";
-    var element_Top = size * origionalTop;
+    var element_Top = size * originalTop;
     element.style.top = element_Top + "px";
-    var element_Left = size * origionalLeft;
+    var element_Left = size * originalLeft;
     element.style.left = element_Left + "px";
 }
 window.onresize = resize;
