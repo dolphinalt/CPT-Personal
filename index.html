@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body class = "body" onload="init();resize();">
+
+    <!------------------------------------------------->
+    <!--                    LOGIN                    -->
+    <!------------------------------------------------->
+    
     <div id="login" style="opacity:0;pointer-events: none;">
         <img    id="loginbox"               src="./assets/svg/loginbox.svg" alt="loginbox" class = "loginbox" width="600" height="729" style="position:absolute;left:660px;top:175px;">
         
@@ -26,6 +31,11 @@
         <div    id="goToSignupText"         class="using" style="position:absolute;left:880px;top:763px;opacity:0.75;">Or sign up using</div>
         <div    id="goToSignUp"             class="using" style="position:absolute;left:919px;top:807px;" onclick="switchPage('login','signup')">SIGN UP</div>
     </div>
+
+    <!-------------------------------------------------->
+    <!--                    SIGNUP                    -->
+    <!-------------------------------------------------->
+
     <div id="signup" style="opacity:0;pointer-events: none;">
         <img    id="signupbox"              src="./assets/svg/signupbox.svg" alt="signupbox" class = "signupbox" width="600" height="885" style="position:absolute;left:660px;top:97px;">
         
@@ -49,6 +59,11 @@
         <div    id="goToLoginText"          class="using" style="position:absolute;left:890px;top:842px;opacity:0.75;">Or log in using</div>
         <div    id="goToLogin"              class="using" style="position:absolute;left:926px;top:886px;" onclick="switchPage('signup','login')">LOG IN</div>
     </div>
+
+    <!------------------------------------------------>
+    <!--                    MAIN                    -->
+    <!------------------------------------------------>
+
     <div id="main" style="opacity:0;pointer-events: none;">
         <img    id="mainbox"                src="./assets/svg/schedulebox.svg" alt="schedulebox" class = "signupbox" width="1704" height="885" style="position:absolute;left:108px;top:97px;">
         
@@ -102,19 +117,157 @@
         <input  id="mainTeacher5"           type="text" placeholder="Teacher 5" style="position:absolute;left:1487px;top:447px;">
         <img    id="mainTeacher5Underbar"   src="./assets/svg/underbarshort.svg" alt="underbarshort" class = "underbarshort" width="200" height="7" style="position:absolute;left:1446px;top:483px;">
         
-        <img    id="mainUpdateButton"       src="./assets/svg/updateschedulebutton.svg" alt="unicon" class = "unicon" width="448" height="50" style="position:absolute;left:736px;top:558px;" onclick="updateSchedule('mainPeriod1','mainPeriod2','mainPeriod3','mainPeriod4','mainPeriod5','mainTeacher1','mainTeacher2','mainTeacher3','mainTeacher4','mainTeacher5')">
-
-        <img    id="mainClassmateA1Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:643px;">
-        <div    id="mainClassmateA1"         class="maintext" style="position:absolute;left:315px;top:643px;">Classmate A1</div>
-
-        <img    id="mainClassmateB1Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:643px;">
-        <div    id="mainClassmateB1"         class="maintext" style="position:absolute;left:608px;top:643px;">Classmate B1</div>
-
-        <img    id="mainClassmateB2Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:703px;">
-        <div    id="mainClassmateB2"         class="maintext" style="position:absolute;left:608px;top:703px;">Classmate B2</div>
+        <img    id="mainUpdateButton"       src="./assets/svg/updateschedulebutton.svg" alt="unicon" class = "unicon" width="448" height="50" style="position:absolute;left:736px;top:558px;" onclick="updateSchedule('mainPeriod1','mainPeriod2','mainPeriod3','mainPeriod4','mainPeriod5','mainTeacher1','mainTeacher2','mainTeacher3','mainTeacher4','mainTeacher5');compare();">
 
         <img    id="mainSettingsButton"     src="./assets/svg/settinglogo.svg" alt="unicon" class = "unicon" width="30" height="35" style="position:absolute;left:1742px;top:907px;" onclick="switchPage('main','settings')">
+        <div    id="mainLogoutButton"       class="maintext" style="position:absolute;left:1654px;top:911px;color:#891522;" onclick="logout()">Logout</div>
+
+        <!------------------------------------------------->
+        <!--                    ROW A                    -->
+        <!------------------------------------------------->
+        <div id="A1" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateA1Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:643px;">
+            <div    id="mainClassmateA1"         class="maintext" style="position:absolute;left:315px;top:643px;">Classmate A1</div>
+        </div>
+
+        <div id="A2" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateA2Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:703px;">
+            <div    id="mainClassmateA2"         class="maintext" style="position:absolute;left:315px;top:703px;">Classmate A2</div>
+        </div>
+        
+        <div id="A3" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateA3Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:763px;">
+            <div    id="mainClassmateA3"         class="maintext" style="position:absolute;left:315px;top:763px;">Classmate A3</div>
+        </div>
+
+        <div id="A4" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateA4Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:823px;">
+            <div    id="mainClassmateA4"         class="maintext" style="position:absolute;left:315px;top:823px;">Classmate A4</div>
+        </div>
+
+        <div id="A5" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateA5Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:284px;top:883px;">
+            <div    id="mainClassmateA5"         class="maintext" style="position:absolute;left:315px;top:883px;">Classmate A5</div>
+        </div>
+
+        <!------------------------------------------------->
+        <!--                    ROW B                    -->
+        <!------------------------------------------------->
+        <div id="B1" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateB1Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:643px;">
+            <div    id="mainClassmateB1"         class="maintext" style="position:absolute;left:608px;top:643px;">Classmate B1</div>
+        </div>
+
+        <div id="B2" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateB2Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:703px;">
+            <div    id="mainClassmateB2"         class="maintext" style="position:absolute;left:608px;top:703px;">Classmate B2</div>
+        </div>
+        
+        <div id="B3" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateB3Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:763px;">
+            <div    id="mainClassmateB3"         class="maintext" style="position:absolute;left:608px;top:763px;">Classmate B3</div>
+        </div>
+
+        <div id="B4" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateB4Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:823px;">
+            <div    id="mainClassmateB4"         class="maintext" style="position:absolute;left:608px;top:823px;">Classmate B4</div>
+        </div>
+
+        <div id="B5" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateB5Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:577px;top:883px;">
+            <div    id="mainClassmateB5"         class="maintext" style="position:absolute;left:608px;top:883px;">Classmate B5</div>
+        </div>
+
+        <!------------------------------------------------->
+        <!--                    ROW C                    -->
+        <!------------------------------------------------->
+        <div id="C1" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateC1Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:870px;top:643px;">
+            <div    id="mainClassmateC1"         class="maintext" style="position:absolute;left:901px;top:643px;">Classmate C1</div>
+        </div>
+
+        </div>
+        <div id="C2" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateC2Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:870px;top:703px;">
+            <div    id="mainClassmateC2"         class="maintext" style="position:absolute;left:901px;top:703px;">Classmate C2</div>
+        </div>
+        
+        <div id="C3" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateC3Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:870px;top:763px;">
+            <div    id="mainClassmateC3"         class="maintext" style="position:absolute;left:901px;top:763px;">Classmate C3</div>
+        </div>
+
+        <div id="C4" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateC4Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:870px;top:823px;">
+            <div    id="mainClassmateC4"         class="maintext" style="position:absolute;left:901px;top:823px;">Classmate C4</div>
+        </div>
+
+        <div id="C5" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateC5Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:870px;top:883px;">
+            <div    id="mainClassmateC5"         class="maintext" style="position:absolute;left:901px;top:883px;">Classmate C5</div>
+        </div>
+
+        <!------------------------------------------------->
+        <!--                    ROW D                    -->
+        <!------------------------------------------------->
+        <div id="D1" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateD1Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1163px;top:643px;">
+            <div    id="mainClassmateD1"         class="maintext" style="position:absolute;left:1193px;top:643px;">Classmate D1</div>
+        </div>
+
+        <div id="D2" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateD2Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1163px;top:703px;">
+            <div    id="mainClassmateD2"         class="maintext" style="position:absolute;left:1193px;top:703px;">Classmate D2</div>
+        </div>
+
+        <div id="D3" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateD3Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1163px;top:763px;">
+            <div    id="mainClassmateD3"         class="maintext" style="position:absolute;left:1193px;top:763px;">Classmate D3</div>
+        </div>
+
+        <div id="D4" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateD4Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1163px;top:823px;">
+            <div    id="mainClassmateD4"         class="maintext" style="position:absolute;left:1193px;top:823px;">Classmate D4</div>
+        </div>
+
+        <div id="D5" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateD5Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1163px;top:883px;">
+            <div    id="mainClassmateD5"         class="maintext" style="position:absolute;left:1193px;top:883px;">Classmate D5</div>
+        </div>
+
+        <!------------------------------------------------->
+        <!--                    ROW E                    -->
+        <!------------------------------------------------->
+        <div id="E1" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateE1Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1456px;top:643px;">
+            <div    id="mainClassmateE1"         class="maintext" style="position:absolute;left:1486px;top:643px;">Classmate E1</div>
+        </div>
+
+        <div id="E2" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateE2Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1456px;top:703px;">
+            <div    id="mainClassmateE2"         class="maintext" style="position:absolute;left:1486px;top:703px;">Classmate E2</div>
+        </div>
+
+        <div id="E3" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateE3Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1456px;top:763px;">
+            <div    id="mainClassmateE3"         class="maintext" style="position:absolute;left:1486px;top:763px;">Classmate E3</div>
+        </div>
+
+        <div id="E4" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateE4Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1456px;top:823px;">
+            <div    id="mainClassmateE4"         class="maintext" style="position:absolute;left:1486px;top:823px;">Classmate E4</div>
+        </div>
+
+        <div id="E5" style="opacity:0;pointer-events: none;">
+            <img    id="mainClassmateE5Icon"     src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:1456px;top:883px;">
+            <div    id="mainClassmateE5"         class="maintext" style="position:absolute;left:1486px;top:883px;">Classmate E5</div>
+        </div>
     </div>
+
+        <!---------------------------------------------------->
+        <!--                    SETTINGS                    -->
+        <!---------------------------------------------------->
+
     <div id="settings" style="opacity:0;pointer-events: none;">
         <img    id="settingbox"              src="./assets/svg/settingbox.svg" alt="settingbox" class = "settingbox" width="600" height="885" style="position:absolute;left:660px;top:97px;">
         
@@ -136,7 +289,7 @@
         <img    id="settingsButton"           src="./assets/svg/settingbutton.svg" alt="settingbutton" class = "settingbutton" width="448" height="50" style="position:absolute;left:736px;top:720px;" onclick="userUpdate('settingsFullname','settingsUsername','settingsPassword')">
         
         <div    id="deleteText"          class="using" style="position:absolute;left:863px;top:842px;opacity:0.75;">Delete your account</div>
-        <div    id="delete"              class="using" style="position:absolute;left:922px;top:886px;color:#891522" onclick="deleteUser()">DELETE</div>
+        <div    id="delete"              class="using" style="position:absolute;left:922px;top:886px;color:#891522;" onclick="deleteUser()">DELETE</div>
     </div>
 </body>
 <script> // utils
@@ -144,6 +297,13 @@ function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
+}
+function logout() {
+    var Cookies = document.cookie.split(';');
+    for (var i = 0; i < Cookies.length; i++) {
+       document.cookie = Cookies[i] + "=; expires="+ new Date(0).toUTCString();
+    }
+    location.reload()
 }
 function init() { //NOTE VERY INSECURE LMFAOOOOO
     if (getCookie("auth")) {
@@ -162,7 +322,6 @@ function init() { //NOTE VERY INSECURE LMFAOOOOO
             // check for response errors
             if (response.status !== 200) {
                 const errorMsg = 'Database read error: ' + response.status;
-                console.log(errorMsg);
                 return;
             }
             // valid response will have json data
@@ -170,7 +329,6 @@ function init() { //NOTE VERY INSECURE LMFAOOOOO
                 you = (getCookie("auth")).split(":")[0];
                 for (i in data) {
                     if (data[i]["username"] == you) {
-                        console.log((data[i]["classes"][0]))
                         p1 = (String(data[i]["classes"][0])).split(";")[0];
                         p2 = (String(data[i]["classes"][1])).split(";")[0];
                         p3 = (String(data[i]["classes"][2])).split(";")[0];
@@ -182,8 +340,6 @@ function init() { //NOTE VERY INSECURE LMFAOOOOO
                         t3 = (String(data[i]["classes"][2])).split(";")[1];
                         t4 = (String(data[i]["classes"][3])).split(";")[1];
                         t5 = (String(data[i]["classes"][4])).split(";")[1];
-                        console.log(p1)
-                        console.log(t2)
                     }
                 }
                 document.getElementById("mainPeriod1").value = p1;
@@ -242,8 +398,6 @@ function auth(unID, pwID) {
             // check for response errors
             if (response.status !== 200) {
                 const errorMsg = 'Database read error: ' + response.status;
-                console.log(errorMsg);
-                console.log(response)
                 return;
             }
             // valid response will have json data
@@ -253,7 +407,7 @@ function auth(unID, pwID) {
                 switchPage('login','main')
             }
             else {
-                console.log("Invalid credentials");
+                // display invalid creds
             }
         })
     })
@@ -298,18 +452,15 @@ function createUser(fnid, unid, pwid) {
             // check for response errors
             if (response.status !== 200) {
                 const errorMsg = 'Database read error: ' + response.status;
-                console.log(errorMsg);
-                console.log(response)
                 return;
             }
             // valid response will have json data
             response.json().then(data => {
             if (data !== null) {
-                console.log(data)
                 switchPage('signup','main')
             }
             else {
-                console.log("Invalid credentials");
+                // display invalid creds
             }
         })
     })
@@ -347,18 +498,15 @@ function userUpdate(fnID, unID, pwID) {
             // check for response errors
             if (response.status !== 200) {
                 const errorMsg = 'Database read error: ' + response.status;
-                console.log(errorMsg);
-                console.log(response)
                 return;
             }
             // valid response will have json data
             response.json().then(data => {
             if (data !== null) {
-                console.log(data)
                 switchPage('settings','main')
             }
             else {
-                console.log("Invalid credentials");
+                // display invalid creds
             }
         })
     })
@@ -390,14 +538,12 @@ function deleteUser() {
             // check for response errors
             if (response.status !== 200) {
                 const errorMsg = 'Database read error: ' + response.status;
-                console.log(errorMsg);
-                console.log(response)
+                
                 return;
             }
             // valid response will have json data
             response.json().then(data => {
             if (data !== null) {
-                console.log(data)
                 var Cookies = document.cookie.split(';');
                 for (var i = 0; i < Cookies.length; i++) {
                    document.cookie = Cookies[i] + "=; expires="+ new Date(0).toUTCString();
@@ -405,7 +551,7 @@ function deleteUser() {
                 location.reload()
             }
             else {
-                console.log("Invalid credentials");
+                // display invalid creds
             }
         })
     })
@@ -456,23 +602,109 @@ function updateSchedule(p1ID, p2ID, p3ID, p4ID, p5ID, t1ID, t2ID, t3ID, t4ID, t5
             // check for response errors
             if (response.status !== 200) {
                 const errorMsg = 'Database read error: ' + response.status;
-                console.log(errorMsg);
-                console.log(response)
                 return;
             }
             // valid response will have json data
             response.json().then(data => {
             if (data !== null) {
-                console.log(data)
             }
             else {
-                console.log("Invalid credentials");
+                // display invalid creds
             }
         })
     })
     // catch fetch errors (ie ACCESS to server blocked)
     .catch(err => {
       console.error(err);
+    });
+}
+function compare() {
+    const read_options = {
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    // fetch the data from API
+    fetch("http://flask.ethanzhao.us/api/users/", read_options)
+        .then(response => {
+        // check for response errors
+        if (response.status !== 200) {
+            const errorMsg = 'Database read error: ' + response.status;
+            return;
+        }
+        // valid response will have json data
+        response.json().then(data => {
+            you = (getCookie("auth")).split(":")[0];
+            for (i in data) {
+                if (data[i]["username"] == you) {
+                    yourIDX=i;
+                }
+            }
+            for (let i=1; i<6; i++) {
+                document.getElementById("A" + i).style.opacity = "0";
+                document.getElementById("A" + i).style.pointerEvents = "none";
+                document.getElementById("B" + i).style.opacity = "0";
+                document.getElementById("B" + i).style.pointerEvents = "none";
+                document.getElementById("C" + i).style.opacity = "0";
+                document.getElementById("C" + i).style.pointerEvents = "none";
+                document.getElementById("D" + i).style.opacity = "0";
+                document.getElementById("D" + i).style.pointerEvents = "none";
+                document.getElementById("E" + i).style.opacity = "0";
+                document.getElementById("E" + i).style.pointerEvents = "none";
+            }
+            per1same=0;
+            per2same=0;
+            per3same=0;
+            per4same=0;
+            per5same=0;
+            for (i in data) {
+                if (data[i]["username"] != you) {
+                    if (data[yourIDX]["classes"][0] == data[i]["classes"][0]) {
+                        per1same += 1;
+                        divID="mainClassmateA" + per1same;
+                        document.getElementById(divID).innerHTML = data[i]["fullname"];
+                        document.getElementById("A" + per1same).style.opacity = "1";
+                        document.getElementById("A" + per1same).style.pointerEvents = "all";
+                    }
+                    if (data[yourIDX]["classes"][1] == data[i]["classes"][1]) {
+                        per2same += 1;
+                        divID="mainClassmateB" + per2same;
+                        document.getElementById(divID).innerHTML = data[i]["fullname"];
+                        document.getElementById("B" + per1same).style.opacity = "1";
+                        document.getElementById("B" + per1same).style.pointerEvents = "all";
+                    }
+                    if (data[yourIDX]["classes"][2] == data[i]["classes"][2]) {
+                        per3same += 1;
+                        divID="mainClassmateC" + per3same;
+                        document.getElementById(divID).innerHTML = data[i]["fullname"];
+                        document.getElementById("C" + per1same).style.opacity = "1";
+                        document.getElementById("C" + per1same).style.pointerEvents = "all";
+                    }
+                    if (data[yourIDX]["classes"][3] == data[i]["classes"][3]) {
+                        per4same += 1;
+                        divID="mainClassmateD" + per4same;
+                        document.getElementById(divID).innerHTML = data[i]["fullname"];
+                        document.getElementById("D" + per1same).style.opacity = "1";
+                        document.getElementById("D" + per1same).style.pointerEvents = "all";
+                    }
+                    if (data[yourIDX]["classes"][4] == data[i]["classes"][4]) {
+                        per5same += 1;
+                        divID="mainClassmateE" + per5same;
+                        document.getElementById(divID).innerHTML = data[i]["fullname"];
+                        document.getElementById("E" + per1same).style.opacity = "1";
+                        document.getElementById("E" + per1same).style.pointerEvents = "all";
+                    }
+                }
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+        console.error(err);
     });
 }
 </script>
@@ -631,15 +863,62 @@ function resize () {
 
     dynamic_imgSize('mainClassmateA1Icon', 20, 24, 284, 643, size);
     dynamic_TextPositioning('mainClassmateA1', 315, 643, size);
+    dynamic_imgSize('mainClassmateA2Icon', 20, 24, 284, 703, size);
+    dynamic_TextPositioning('mainClassmateA2', 315, 703, size);
+    dynamic_imgSize('mainClassmateA3Icon', 20, 24, 284, 763, size);
+    dynamic_TextPositioning('mainClassmateA3', 315, 763, size);
+    dynamic_imgSize('mainClassmateA4Icon', 20, 24, 284, 823, size);
+    dynamic_TextPositioning('mainClassmateA4', 315, 823, size);
+    dynamic_imgSize('mainClassmateA5Icon', 20, 24, 284, 883, size);
+    dynamic_TextPositioning('mainClassmateA5', 315, 883, size);
 
     dynamic_imgSize('mainClassmateB1Icon', 20, 24, 577, 643, size);
     dynamic_TextPositioning('mainClassmateB1', 608, 643, size);
-
     dynamic_imgSize('mainClassmateB2Icon', 20, 24, 577, 703, size);
     dynamic_TextPositioning('mainClassmateB2', 608, 703, size);
+    dynamic_imgSize('mainClassmateB3Icon', 20, 24, 577, 763, size);
+    dynamic_TextPositioning('mainClassmateB3', 608, 763, size);
+    dynamic_imgSize('mainClassmateB4Icon', 20, 24, 577, 823, size);
+    dynamic_TextPositioning('mainClassmateB4', 608, 823, size);
+    dynamic_imgSize('mainClassmateB5Icon', 20, 24, 577, 883, size);
+    dynamic_TextPositioning('mainClassmateB5', 608, 883, size);
+
+    dynamic_imgSize('mainClassmateC1Icon', 20, 24, 870, 643, size);
+    dynamic_TextPositioning('mainClassmateC1', 901, 643, size);
+    dynamic_imgSize('mainClassmateC2Icon', 20, 24, 870, 703, size);
+    dynamic_TextPositioning('mainClassmateC2', 901, 703, size);
+    dynamic_imgSize('mainClassmateC3Icon', 20, 24, 870, 763, size);
+    dynamic_TextPositioning('mainClassmateC3', 901, 763, size);
+    dynamic_imgSize('mainClassmateC4Icon', 20, 24, 870, 823, size);
+    dynamic_TextPositioning('mainClassmateC4', 901, 823, size);
+    dynamic_imgSize('mainClassmateC5Icon', 20, 24, 870, 883, size);
+    dynamic_TextPositioning('mainClassmateC5', 901, 883, size);
+
+    dynamic_imgSize('mainClassmateD1Icon', 20, 24, 1163, 643, size);
+    dynamic_TextPositioning('mainClassmateD1', 1193, 643, size);
+    dynamic_imgSize('mainClassmateD2Icon', 20, 24, 1163, 703, size);
+    dynamic_TextPositioning('mainClassmateD2', 1193, 703, size);
+    dynamic_imgSize('mainClassmateD3Icon', 20, 24, 1163, 763, size);
+    dynamic_TextPositioning('mainClassmateD3', 1193, 763, size);
+    dynamic_imgSize('mainClassmateD4Icon', 20, 24, 1163, 823, size);
+    dynamic_TextPositioning('mainClassmateD4', 1193, 823, size);
+    dynamic_imgSize('mainClassmateD5Icon', 20, 24, 1163, 883, size);
+    dynamic_TextPositioning('mainClassmateD5', 1193, 883, size);
+
+    dynamic_imgSize('mainClassmateE1Icon', 20, 24, 1456, 643, size);
+    dynamic_TextPositioning('mainClassmateE1', 1486, 643, size);
+    dynamic_imgSize('mainClassmateE2Icon', 20, 24, 1456, 703, size);
+    dynamic_TextPositioning('mainClassmateE2', 1486, 703, size);
+    dynamic_imgSize('mainClassmateE3Icon', 20, 24, 1456, 763, size);
+    dynamic_TextPositioning('mainClassmateE3', 1486, 763, size);
+    dynamic_imgSize('mainClassmateE4Icon', 20, 24, 1456, 823, size);
+    dynamic_TextPositioning('mainClassmateE4', 1486, 823, size);
+    dynamic_imgSize('mainClassmateE5Icon', 20, 24, 1456, 883, size);
+    dynamic_TextPositioning('mainClassmateE5', 1486, 883, size);
 
     dynamic_imgSize('mainSettingsButton', 30, 35, 1742, 907, size);
 
+    dynamic_TextPositioning('mainLogoutButton', 1654, 911, size)
     //settings
     dynamic_imgSize("settingbox", 600, 885, 660, 97, size);
 
