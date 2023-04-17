@@ -8,7 +8,8 @@ The project is deployed publicly here: [http://schedules.ethanzhao.us](http://sc
 
 Just create an account, and enter your classes!
 
-
+![1](https://user-images.githubusercontent.com/95988712/232172207-8fb0cc56-ffda-4867-bb60-4e8c19f6f52f.png)
+![6](https://user-images.githubusercontent.com/95988712/232172224-b27bbf51-916b-4a5f-89ef-a5e006e55e85.png)
 
 ## License
 
