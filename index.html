@@ -386,6 +386,7 @@ function switchPage(current, page) {
 </script>
 
 <script>
+
 function auth(unID, pwID) {
     username = document.getElementById(unID).value;
     password = document.getElementById(pwID).value;
@@ -428,6 +429,7 @@ function auth(unID, pwID) {
       console.error(err);
     });
 }
+
 function createUser(fnid, unid, pwid) {
     fullname = document.getElementById(fnid).value;
     username = document.getElementById(unid).value;
@@ -630,6 +632,7 @@ function updateSchedule(p1ID, p2ID, p3ID, p4ID, p5ID, t1ID, t2ID, t3ID, t4ID, t5
       console.error(err);
     });
 }
+
 function compare() {
     const read_options = {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -719,6 +722,7 @@ function compare() {
         console.error(err);
     });
 }
+
 </script>
 
 <script> // resizing

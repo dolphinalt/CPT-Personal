@@ -8,6 +8,8 @@ The project is deployed publicly here: [http://schedules.ethanzhao.us](http://sc
 
 Just create an account, and enter your classes!
 
+
+
 ## License
 
 [GPL-3.0 Liscence](https://choosealicense.com/licenses/gpl-3.0/)
